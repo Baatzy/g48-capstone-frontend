@@ -31,7 +31,7 @@ class ViewProtocolsButton extends Component {
   }
 }
 
-class Snapshot extends Component {
+class SnapshotContainer extends Component {
   render () {
     return (
       <div>
@@ -52,7 +52,7 @@ class Dashboard extends Component {
         <TrainNowButton />
         <ViewCalendarButton />
         <ViewProtocolsButton />
-        <Snapshot />
+        <SnapshotContainer />
       </div>
     )
   }
