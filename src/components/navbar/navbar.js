@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 
 class Sidebar extends Component {
@@ -11,7 +12,8 @@ class NavContainer extends Component {
   render () {
     return (
       <div className="App-header">
-        <h2>✨ The Boardroom ✨</h2>
+        <Sidebar />
+        <Link to='/'><h2>✨ The Boardroom ✨</h2></Link>
       </div>
     )
   }

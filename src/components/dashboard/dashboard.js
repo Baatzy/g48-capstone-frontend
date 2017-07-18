@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import NavContainer from '../navbar/navbar'
+import { NavContainer } from '../navbar/navbar'
 
 
 class TrainNowButton extends Component {
   render () {
     return (
       <div className="Dash-button">
-        <button>Train Now</button>
+        <Link to='/train'><button>Train Now</button></Link>
       </div>
     )
   }
@@ -17,7 +17,7 @@ class ViewCalendarButton extends Component {
   render () {
     return (
       <div className="Dash-button">
-        <button>View Calendar</button>
+        <Link to='/calendar'><button>View Calendar</button></Link>
       </div>
     )
   }
@@ -38,19 +38,17 @@ class SnapshotContainer extends Component {
     return (
       <div>
         <p>Upcomming workouts and dashboard stats go here</p>
-        <p>Upcomming workouts and dashboard stats go here</p>
-        <p>Upcomming workouts and dashboard stats go here</p>
-        <p>Upcomming workouts and dashboard stats go here</p>
-        <p>Upcomming workouts and dashboard stats go here</p>
       </div>
     )
   }
 }
 
-class DashboardContainer extends Component {
+class DashboardPage extends Component {
   render () {
     return (
       <div>
+        <NavContainer />
+        <h1>Dashboard</h1>
         <TrainNowButton />
         <ViewCalendarButton />
         <ViewProtocolsButton />
@@ -60,4 +58,4 @@ class DashboardContainer extends Component {
   }
 }
 
-export default DashboardContainer
+export { DashboardPage }
