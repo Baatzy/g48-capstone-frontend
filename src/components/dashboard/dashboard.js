@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { NavContainer } from '../navbar/navbar'
+import { Button } from 'react-bootstrap'
 
 
 class TrainNowButton extends Component {
   render () {
     return (
-      <div className="Dash-button">
-        <Link to='/train'><button>Train Now</button></Link>
-      </div>
+      <Link to='/train'>
+        <Button bsStyle="danger" bsSize="large">
+          Train Now
+        </Button>
+      </Link>
     )
   }
 }
@@ -16,9 +19,11 @@ class TrainNowButton extends Component {
 class ViewCalendarButton extends Component {
   render () {
     return (
-      <div className="Dash-button">
-        <Link to='/calendar'><button>View Calendar</button></Link>
-      </div>
+      <Link to='/calendar'>
+        <Button bsStyle="info" bsSize="large">
+          Calendar
+        </Button>
+      </Link>
     )
   }
 }
@@ -26,9 +31,11 @@ class ViewCalendarButton extends Component {
 class ViewProtocolsButton extends Component {
   render () {
     return (
-      <div className="Dash-button">
-        <Link to='/protocols'><button>See Protocols</button></Link>
-      </div>
+      <Link to='/protocols'>
+        <Button bsStyle="warning" bsSize="large">
+          See Protocols
+        </Button>
+      </Link>
     )
   }
 }
@@ -37,7 +44,9 @@ class SnapshotContainer extends Component {
   render () {
     return (
       <div>
-        <p>Upcomming workouts and dashboard stats go here</p>
+        <h4>Upcomming workouts and dashboard stats go here</h4>
+        <h4>Upcomming workouts and dashboard stats go here</h4>
+        <h4>Upcomming workouts and dashboard stats go here</h4>
       </div>
     )
   }

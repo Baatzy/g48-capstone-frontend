@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { NavContainer } from '../navbar/navbar'
 import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 
 
 // class TrainNowButton extends Component {
