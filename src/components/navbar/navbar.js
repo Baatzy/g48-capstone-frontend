@@ -17,4 +17,4 @@ class NavContainer extends Component {
   }
 }
 
-export default NavContainer
+export { NavContainer }
