@@ -45,28 +45,28 @@ class ViewProtocolsButton extends Component {
 }
 
 class SnapshotContainer extends Component {
-
-
   render () {
     let log
     let logs = this.props.logbook.schedule
+    let protocols = this.props.protocols
 
-    if (!logs) {
-      console.log('No data yet', logs);
+    if (!logs || !protocols) {
       return (
         <div>
-          <h3>Hmmm...something went wrong 😥</h3>
+          <h3>Loading 😐💦</h3>
         </div>
       )
     } else {
-      console.log('We got data', logs);
-      log = logs[logs.length-1]
+      log = logs[logs.length-2]
+      let protocolIds = log.protocols
+      console.log(protocols);
+      console.log('protocolIds', protocolIds);
+      let protocolsArr = protocols.filter(protocol => {
+        return protocolIds.includes(protocol.id)
+      })
+      protocolsArr.reverse()
 
-      // let protocols = await axios.get(`${apiUrl}/protocols`)
-      // protocols = logbooks.data
-      // console.log('Protocols', protocols);
-
-
+      console.log('Final protocol arr', protocolsArr);
 
       return (
         <div>
@@ -88,28 +88,27 @@ class DashboardPage extends Component {
   }
 
   async componentDidMount () {
+    let protocols = await axios.get(`${apiUrl}/protocols`)
+    protocols = protocols.data
     let logbooks = await axios.get(`${apiUrl}/logbooks`)
     logbooks = logbooks.data
     let logbook = logbooks.filter(el => {
       return el['user_id'] === userId
     })
     logbook = logbook[0]['json_logbook']
-    this.setState({ logbook })
+    this.setState({ logbook, protocols })
   }
 
   render () {
-    const logbook = this.state.logbook
-    // console.log('Dash render', logbook);
-
     return (
       <div>
         <NavContainer />
         <h1>Dashboard</h1>
-        <p>Mesocycle focus: {logbook.mainFocus}</p>
+        <p>Mesocycle focus: {this.state.logbook.mainFocus}</p>
         <TrainNowButton />
         <ViewCalendarButton />
         <ViewProtocolsButton />
-        <SnapshotContainer logbook={logbook} />
+        <SnapshotContainer logbook={this.state.logbook} protocols={this.state.protocols}/>
       </div>
     )
   }
