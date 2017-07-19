@@ -37,7 +37,7 @@ class ViewProtocolsButton extends Component {
     return (
       <Link to='/protocols'>
         <Button bsStyle="warning" bsSize="large">
-          See Protocols 😎
+          Protocols 😎
         </Button>
       </Link>
     )
@@ -45,14 +45,37 @@ class ViewProtocolsButton extends Component {
 }
 
 class SnapshotContainer extends Component {
+
+
   render () {
-    return (
-      <div>
-        <h4>Next training day on <span>{dateStringFixer(this.props.nextSession.date)}</span></h4>
-        <h4>Upcomming workouts and dashboard stats go here</h4>
-        <h4>Upcomming workouts and dashboard stats go here</h4>
-      </div>
-    )
+    let log
+    let logs = this.props.logbook.schedule
+
+    if (!logs) {
+      console.log('No data yet', logs);
+      return (
+        <div>
+          <h3>Hmmm...something went wrong 😥</h3>
+        </div>
+      )
+    } else {
+      console.log('We got data', logs);
+      log = logs[logs.length-1]
+
+      // let protocols = await axios.get(`${apiUrl}/protocols`)
+      // protocols = logbooks.data
+      // console.log('Protocols', protocols);
+
+
+
+      return (
+        <div>
+          <h4>Next training day on <span>{dateStringFixer(log.date)}</span></h4>
+          <h4>Training protocols: HERE</h4>
+        </div>
+      )
+    }
+
   }
 }
 
@@ -60,32 +83,56 @@ class DashboardPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      nextSession: {}
+      logbook: {}
     }
   }
 
   async componentDidMount () {
     let logbooks = await axios.get(`${apiUrl}/logbooks`)
     logbooks = logbooks.data
-    const userLogbook = logbooks.filter(logbook => {
-      return logbook['user_id'] === userId
+    let logbook = logbooks.filter(el => {
+      return el['user_id'] === userId
     })
-    const nextSession = userLogbook[0]['json_logbook'].schedule.pop()
-    this.setState({ nextSession })
+    logbook = logbook[0]['json_logbook']
+    this.setState({ logbook })
   }
 
   render () {
+    const logbook = this.state.logbook
+    // console.log('Dash render', logbook);
+
     return (
       <div>
         <NavContainer />
         <h1>Dashboard</h1>
+        <p>Mesocycle focus: {logbook.mainFocus}</p>
         <TrainNowButton />
         <ViewCalendarButton />
         <ViewProtocolsButton />
-        <SnapshotContainer nextSession={this.state.nextSession} />
+        <SnapshotContainer logbook={logbook} />
       </div>
     )
   }
 }
 
 export { DashboardPage }
+
+// if (!logbook) {
+//   return (
+//     <div>
+//       <h4>Next training day on <span>{dateStringFixer()}</span></h4>
+//       <h4>Upcomming workouts and dashboard stats go here</h4>
+//       <h4>Upcomming workouts and dashboard stats go here</h4>
+//     </div>
+//   )
+// } else {
+//   log = logbook.schedule.pop()
+//   console.log(log);
+//   return (
+//     <div>
+//       <h4>Next training day on <span>{dateStringFixer(log.date)}</span></h4>
+//       <h4>Upcomming workouts and dashboard stats go here</h4>
+//       <h4>Upcomming workouts and dashboard stats go here</h4>
+//     </div>
+//   )
+// }

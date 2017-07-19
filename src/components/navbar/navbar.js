@@ -16,7 +16,7 @@ class NavContainer extends Component {
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to='#'>✨ The Boardroom ✨</Link>
+            <Link to='/dashboard'>✨ The Boardroom ✨</Link>
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
@@ -27,7 +27,7 @@ class NavContainer extends Component {
             <NavItem eventKey={3}><Link to='/calendar'>Calendar</Link></NavItem>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1} href="#"><Link to='/'>Login</Link></NavItem>
+            <NavItem eventKey={1}><Link to='/'>Login</Link></NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
