@@ -58,6 +58,7 @@ function logCardStyle (bool) {
 
 function protocolLister (protocolIdArr, protocols) {
   let protocolNameArr = []
+  let protocolsStr = ''
 
   protocolIdArr.map(protocolId => {
     return protocols.forEach(protocol => {
@@ -67,11 +68,15 @@ function protocolLister (protocolIdArr, protocols) {
     })
   })
 
-  console.log('protocolNameArr', protocolNameArr);
+  protocolNameArr.forEach((protocolName, index) => {
+    if (index === protocolNameArr.length-1) {
+      protocolsStr = protocolsStr.concat(protocolName)
+    } else {
+      protocolsStr = protocolsStr.concat(protocolName + ', ')
+    }
+  })
 
-
-
-  return <p>Protocols:</p>
+  return protocolsStr
 }
 
 function displayLogCards (logsArr, protocols) {
@@ -87,7 +92,7 @@ function displayLogCards (logsArr, protocols) {
     <div key={index}>
       <Col xs={12} md={12}>
         <Panel header={dateStringFixer(log.date)} bsStyle={logCardStyle(log.completed)}>
-          {protocolLister(protocolIdArr[index], protocols)}
+          <p>Protocols: {protocolLister(protocolIdArr[index], protocols)}</p>
           <p>Warmup: {log.warmupNotes}</p>
           <p>Session: {log.sessionNotes}</p>
         </Panel>
