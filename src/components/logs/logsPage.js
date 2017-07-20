@@ -11,17 +11,17 @@ const userId = 1 // Eventually needs to be obtained from session token
 
 class LogsContainer extends Component {
   render () {
-    let logs = this.props.logbook.schedule
+    let logbook = this.props.logbook
     let protocols = this.props.protocols
-    console.log('In logs, this is logs', logs);
-    console.log('In logs, this is protocols', protocols);
-    if (!logs || !protocols) {
+
+    if (!logbook.length || !protocols.length) {
       return (
         HTMLLoading()
       )
     } else {
       return (
         <div>
+          {displayLogCards(logbook, protocols)}
         </div>
       )
     }
@@ -32,7 +32,7 @@ class LogsPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      logbook: {},
+      logbook: [],
       protocols: []
     }
   }
@@ -42,14 +42,15 @@ class LogsPage extends Component {
     protocols = protocols.data
     let logbooks = await axios.get(`${apiUrl}/logbooks`)
     logbooks = logbooks.data
-    let logbook = logbooks.filter(el => {
-      return el['user_id'] === userId
+    let logbook = logbooks.filter(logbook => {
+      return logbook['user_id'] === userId
     })
-    logbook = logbook[0]['json_logbook']
+    logbook = logbook[0]['json_logbook'].schedule.reverse()
     this.setState({ logbook, protocols })
   }
 
   render () {
+
     return (
       <div>
         <NavContainer />

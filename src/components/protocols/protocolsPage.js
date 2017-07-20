@@ -22,15 +22,16 @@ class ProtocolFilters extends Component {
 class ProtocolsContainer extends Component {
   render () {
     let protocols = this.props.protocols
+    let usernames = this.props.usernames
 
-    if (!protocols) {
+    if (!protocols.length || !usernames.length) {
       return (
         HTMLLoading()
       )
     } else {
       return (
         <div>
-          {displayProtocolCards(protocols)}
+          {displayProtocolCards(protocols, usernames)}
         </div>
       )
     }
@@ -42,14 +43,20 @@ class ProtocolsPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      protocols: []
+      protocols: [],
+      usernames: []
     }
   }
 
   async componentDidMount () {
     let protocols = await axios.get(`${apiUrl}/protocols`)
     protocols = protocols.data
-    this.setState({ protocols })
+    let users = await axios.get(`${apiUrl}/users`)
+    users = users.data
+    let usernames = users.map(user => {
+      return { id: user.id, username: user.username }
+    })
+    this.setState({ protocols, usernames })
   }
 
   render () {
@@ -58,7 +65,7 @@ class ProtocolsPage extends Component {
         <NavContainer />
         <h1>Protocols</h1>
         <ProtocolFilters />
-        <ProtocolsContainer protocols={this.state.protocols}/>
+        <ProtocolsContainer protocols={this.state.protocols} usernames={this.state.usernames}/>
       </div>
     )
   }
