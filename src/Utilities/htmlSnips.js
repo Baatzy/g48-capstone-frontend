@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+
 function HTMLLoading () {
   return (
     <div>
@@ -7,6 +8,5 @@ function HTMLLoading () {
     </div>
   )
 }
-
 
 export { HTMLLoading }

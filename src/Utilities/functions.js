@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Panel, Grid, Col } from 'react-bootstrap'
+import { HTMLLoading } from './htmlSnips'
 
+// GENERAL USE // ***************************************************** //
 
 function dateStringFixer (dateStr) {
   if (!dateStr) return '...not sure actually.'
@@ -20,28 +22,11 @@ function dateStringFixer (dateStr) {
   return month + '-' + day + '-' + year
 }
 
-function logCardStyle (bool) {
-  if (bool) {
-    return "success"
-  } else if (bool === false) {
-    return "danger"
-  } else if (bool === null) {
-    return "warning"
-  }
-}
-
-function protocolLister (protocolIdArr, protocols) {
-
-}
-
+// PROTOCOLS PAGE // ************************************************* //
 
 function displayProtocolCards (protocolsArr, usernamesArr) {
   if (!protocolsArr) {
-    return (
-      <div>
-        <h2>Loading 😐💦</h2>
-      </div>
-    )
+    return HTMLLoading()
   }
 
   return protocolsArr.map(protocol =>
@@ -59,20 +44,50 @@ function displayProtocolCards (protocolsArr, usernamesArr) {
   )
 }
 
+// LOGBOOK PAGE // ************************************************** //
+
+function logCardStyle (bool) {
+  if (bool) {
+    return "success"
+  } else if (bool === false) {
+    return "danger"
+  } else if (bool === null) {
+    return "warning"
+  }
+}
+
+function protocolLister (protocolIdArr, protocols) {
+  let protocolNameArr = []
+
+  protocolIdArr.map(protocolId => {
+    return protocols.forEach(protocol => {
+      if (protocol.id === protocolId) {
+        protocolNameArr.push(protocol['json_protocol'].name)
+      }
+    })
+  })
+
+  console.log('protocolNameArr', protocolNameArr);
+
+
+
+  return <p>Protocols:</p>
+}
+
 function displayLogCards (logsArr, protocols) {
   if (!logsArr || !protocols) {
-    return (
-      <div>
-        <h2>Loading 😐💦</h2>
-      </div>
-    )
+    return HTMLLoading()
   }
+
+  let protocolIdArr = logsArr.map(log => {
+    return log.protocols
+  })
 
   return logsArr.map((log, index) =>
     <div key={index}>
       <Col xs={12} md={12}>
         <Panel header={dateStringFixer(log.date)} bsStyle={logCardStyle(log.completed)}>
-          <p>Protocols: </p>
+          {protocolLister(protocolIdArr[index], protocols)}
           <p>Warmup: {log.warmupNotes}</p>
           <p>Session: {log.sessionNotes}</p>
         </Panel>
