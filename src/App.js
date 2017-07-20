@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { LoginPage } from './components/login/login'
-import { DashboardPage } from './components/dashboard/dashboard'
-import { ProtocolsPage } from './components/protocols/protocols'
-import { TrainPage } from './components/train/train'
-import { CalendarPage } from './components/calendar/calendar'
+import { LoginPage } from './components/login/loginPage'
+import { DashboardPage } from './components/dashboard/dashboardPage'
+import { ProtocolsPage } from './components/protocols/protocolsPage'
+import { NewProtocolPage } from './components/protocols/newProtocolPage'
+import { LogsPage } from './components/logs/logsPage'
+import { NewLogPage } from './components/logs/newLogPage'
 import './App.css';
 
 
@@ -14,10 +15,11 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path='/' component={LoginPage} />
-          <Route path='/dashboard' component={DashboardPage} />
-          <Route path='/train' component={TrainPage} />
-          <Route path='/protocols' component={ProtocolsPage} />
-          <Route path='/calendar' component={CalendarPage} />
+          <Route exact path='/dashboard' component={DashboardPage} />
+          <Route exact path='/logbook' component={LogsPage} />
+          <Route exact path='/logs/new' component={NewLogPage} />
+          <Route exact path='/protocols' component={ProtocolsPage} />
+          <Route exact path='/protocols/new' component={NewProtocolPage} />
         </Switch>
       </div>
     );

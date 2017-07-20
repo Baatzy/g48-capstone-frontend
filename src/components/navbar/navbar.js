@@ -23,11 +23,11 @@ class NavContainer extends Component {
         <Navbar.Collapse>
           <Nav>
             <NavItem eventKey={1}><Link to='/dashboard'>Dashboard</Link></NavItem>
-            <NavItem eventKey={2}><Link to='/protocols'>Protocols</Link></NavItem>
-            <NavItem eventKey={3}><Link to='/calendar'>Calendar</Link></NavItem>
+            <NavItem eventKey={2}><Link to='/logbook'>My Logbook</Link></NavItem>
+            <NavItem eventKey={3}><Link to='/protocols'>Protocols</Link></NavItem>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1}><Link to='/'>Login</Link></NavItem>
+            <NavItem eventKey={1}><Link to='/'>Login Page</Link></NavItem>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

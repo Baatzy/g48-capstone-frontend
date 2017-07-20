@@ -4,16 +4,26 @@ import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 
-class TrainPage extends Component {
+class NewLogForm extends Component {
   render () {
     return (
       <div>
-        <NavContainer />
-        <h1>Train</h1>
-        This is the training page
+        This is the new log form.
       </div>
     )
   }
 }
 
-export { TrainPage }
+class NewLogPage extends Component {
+  render () {
+    return (
+      <div>
+        <NavContainer />
+        <h1>Create log</h1>
+        <NewLogForm />
+      </div>
+    )
+  }
+}
+
+export { NewLogPage }
