@@ -24,7 +24,7 @@ function dateStringFixer (dateStr) {
 
 // PROTOCOLS PAGE // ************************************************* //
 
-function displayProtocolCards (protocolsArr, usernamesArr) {
+function displayProtocolCards (protocolsArr) {
   if (!protocolsArr) {
     return HTMLLoading()
   }
@@ -34,6 +34,7 @@ function displayProtocolCards (protocolsArr, usernamesArr) {
       <Col xs={12} md={12}>
         <div>
           <Panel header={protocol['json_protocol'].name}>
+            <p>Author: {protocol['author_username']}</p>
             <p>Target: {protocol['json_protocol'].muscleGroup}</p>
             <p>Category: {protocol['json_protocol'].category}</p>
             <p>{protocol['json_protocol'].description}</p>
@@ -60,8 +61,8 @@ function protocolLister (protocolIdArr, protocols) {
   let protocolNameArr = []
   let protocolsStr = ''
 
-  protocolIdArr.map(protocolId => {
-    return protocols.forEach(protocol => {
+  protocolIdArr.forEach(protocolId => {
+    protocols.forEach(protocol => {
       if (protocol.id === protocolId) {
         protocolNameArr.push(protocol['json_protocol'].name)
       }

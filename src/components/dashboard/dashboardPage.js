@@ -38,7 +38,7 @@ class ViewCalendarButtons extends Component {
       <div>
         <Link to='/logbook'>
           <Button bsStyle="info" bsSize="large">
-            My Logbook 🥑
+            My Logbook 📓
           </Button>
         </Link>
       </div>
@@ -52,7 +52,7 @@ class ViewProtocolsButtons extends Component {
       <div>
         <Link to='/protocols'>
           <Button bsStyle="warning" bsSize="large">
-            Protocols 🔎
+            Protocols ⭐️
           </Button>
         </Link>
         <Link to='/protocols/new'>

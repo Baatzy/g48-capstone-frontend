@@ -10,7 +10,7 @@ class NavContainer extends Component {
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to='/dashboard'>✨ The Boardroom ✨</Link>
+            <Link to='/dashboard'>⚡️ The Boardroom ⚡️</Link>
           </Navbar.Brand>
           <Navbar.Brand>
             {this.props.navTitle}
