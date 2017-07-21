@@ -43,7 +43,7 @@ class ProtocolsPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      pageTitle: 'Protocols',
+      navTitle: 'Protocols',
       protocols: [],
       usernames: [],
     }
@@ -63,7 +63,7 @@ class ProtocolsPage extends Component {
   render () {
     return (
       <div>
-        <NavContainer pageTitle={this.state.pageTitle}/>
+        <NavContainer navTitle={this.state.navTitle}/>
         <ProtocolFilters />
         <ProtocolsContainer protocols={this.state.protocols} usernames={this.state.usernames}/>
       </div>

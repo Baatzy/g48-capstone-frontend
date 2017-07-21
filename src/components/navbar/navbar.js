@@ -13,7 +13,7 @@ class NavContainer extends Component {
             <Link to='/dashboard'>✨ The Boardroom ✨</Link>
           </Navbar.Brand>
           <Navbar.Brand>
-            {this.props.pageTitle}
+            {this.props.navTitle}
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

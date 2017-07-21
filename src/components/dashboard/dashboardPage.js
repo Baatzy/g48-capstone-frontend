@@ -98,7 +98,7 @@ class DashboardPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      pageTitle: 'Dashboard',
+      navTitle: 'Dashboard',
       logbook: {},
       protocols: [],
     }
@@ -119,7 +119,7 @@ class DashboardPage extends Component {
   render () {
     return (
       <div>
-        <NavContainer pageTitle={this.state.pageTitle}/>
+        <NavContainer navTitle={this.state.navTitle}/>
         <MesocycleContainer logbook={this.state.logbook}/>
         <TrainNowButtons />
         <ViewCalendarButtons />

@@ -18,14 +18,14 @@ class NewProtocolPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      pageTitle: 'Add Protocol',
+      navTitle: 'Add Protocol',
     }
   }
 
   render () {
     return (
       <div>
-        <NavContainer pageTitle={this.state.pageTitle}/>
+        <NavContainer navTitle={this.state.navTitle}/>
         <NewProtocolForm />
       </div>
     )
