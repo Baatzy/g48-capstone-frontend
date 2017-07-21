@@ -24,13 +24,13 @@ function dateStringFixer (dateStr) {
 
 // PROTOCOLS PAGE // ************************************************* //
 
-function modifyProtocolButtons (authorId, userId) {
+function modifyProtocolButtons (authorId, userId, protocolId) {
   if (userId === authorId) {
     return (
-      <form>
-        <Button type="submit"><Glyphicon glyph="trash" /></Button>
-        <Button type="submit"><Glyphicon glyph="edit" /></Button>
-      </form>
+      <div>
+        <Button onClick={this.props.handleDelete(protocolId)}><Glyphicon glyph="trash" /></Button>
+        <Button><Glyphicon glyph="edit" /></Button>
+      </div>
     )
   } else {
     return <div></div>
@@ -52,9 +52,8 @@ function displayProtocolCards (protocolsArr, userId) {
             <p>Target: {protocol['json_protocol'].muscleGroup}</p>
             <p>Category: {protocol['json_protocol'].category}</p>
             <p>{protocol['json_protocol'].description}</p>
-            {modifyProtocolButtons(protocol['author_user_id'], userId)}
+            {modifyProtocolButtons(protocol['author_user_id'], userId, protocol.id)}
           </Panel>
-
         </div>
       </Col>
     </div>

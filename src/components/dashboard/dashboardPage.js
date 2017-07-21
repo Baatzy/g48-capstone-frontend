@@ -9,15 +9,14 @@ const apiUrl = 'https://basement-windows.herokuapp.com'
 const userId = 1 // Eventually needs to be obtained from session token
 
 
-class MesocycleContainer extends Component {
-  render () {
-    return (
-      <div>
-        <p>Mesocycle focus: {this.props.logbook.mainFocus}</p>
-      </div>
-    )
-  }
+function MesocycleContainer(props) {
+  return (
+    <div>
+      <p>Mesocycle focus: {props.logbook.mainFocus}</p>
+    </div>
+  ) 
 }
+
 class TrainNowButtons extends Component {
   render () {
     return (
