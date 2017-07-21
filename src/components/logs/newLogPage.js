@@ -15,11 +15,17 @@ class NewLogForm extends Component {
 }
 
 class NewLogPage extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      pageTitle: 'Create Log',
+    }
+  }
+
   render () {
     return (
       <div>
-        <NavContainer />
-        <h1>Create log</h1>
+        <NavContainer pageTitle={this.state.pageTitle}/>
         <NewLogForm />
       </div>
     )

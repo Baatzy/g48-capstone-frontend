@@ -4,12 +4,6 @@ import { Button } from 'react-bootstrap'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem }  from 'react-bootstrap'
 
 
-class Sidebar extends Component {
-  render () {
-    return (null)
-  }
-}
-
 class NavContainer extends Component {
   render () {
     return (
@@ -17,6 +11,9 @@ class NavContainer extends Component {
         <Navbar.Header>
           <Navbar.Brand>
             <Link to='/dashboard'>✨ The Boardroom ✨</Link>
+          </Navbar.Brand>
+          <Navbar.Brand>
+            {this.props.pageTitle}
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

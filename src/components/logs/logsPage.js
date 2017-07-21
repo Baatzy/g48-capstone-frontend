@@ -32,8 +32,9 @@ class LogsPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      pageTitle: 'My Logbook',
       logbook: [],
-      protocols: []
+      protocols: [],
     }
   }
 
@@ -53,8 +54,7 @@ class LogsPage extends Component {
 
     return (
       <div>
-        <NavContainer />
-        <h1>Your Logbook</h1>
+        <NavContainer pageTitle={this.state.pageTitle}/>
         <LogsContainer logbook={this.state.logbook} protocols={this.state.protocols}/>
       </div>
     )
