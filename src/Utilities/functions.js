@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Panel, Grid, Col } from 'react-bootstrap'
+import { Button, Panel, Grid, Col, Glyphicon } from 'react-bootstrap'
 import { HTMLLoading } from './htmlSnips'
 
 // GENERAL USE // ***************************************************** //
@@ -24,7 +24,21 @@ function dateStringFixer (dateStr) {
 
 // PROTOCOLS PAGE // ************************************************* //
 
-function displayProtocolCards (protocolsArr) {
+function modifyProtocolButtons (authorId, userId) {
+  if (userId === authorId) {
+    return (
+      <form>
+        <Button type="submit"><Glyphicon glyph="trash" /></Button>
+        <Button type="submit"><Glyphicon glyph="edit" /></Button>
+      </form>
+    )
+  } else {
+    return <div></div>
+  }
+
+}
+
+function displayProtocolCards (protocolsArr, userId) {
   if (!protocolsArr) {
     return HTMLLoading()
   }
@@ -38,7 +52,9 @@ function displayProtocolCards (protocolsArr) {
             <p>Target: {protocol['json_protocol'].muscleGroup}</p>
             <p>Category: {protocol['json_protocol'].category}</p>
             <p>{protocol['json_protocol'].description}</p>
+            {modifyProtocolButtons(protocol['author_user_id'], userId)}
           </Panel>
+
         </div>
       </Col>
     </div>

@@ -30,11 +30,10 @@ class ProtocolsContainer extends Component {
     } else {
       return (
         <div>
-          {displayProtocolCards(protocols)}
+          {displayProtocolCards(protocols, userId)}
         </div>
       )
     }
-
   }
 }
 
@@ -50,11 +49,7 @@ class ProtocolsPage extends Component {
   async componentDidMount () {
     let protocols = await axios.get(`${apiUrl}/protocols`)
     protocols = protocols.data
-    // let users = await axios.get(`${apiUrl}/users`)
-    // users = users.data
-    // let usernames = users.map(user => {
-    //   return { id: user.id, username: user.username }
-    // })
+
     this.setState({ protocols })
   }
 
