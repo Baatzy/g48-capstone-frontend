@@ -4,7 +4,9 @@ import { NavContainer } from '../navbar/navbar'
 import { Link } from 'react-router-dom'
 import { Grid, Button, FormGroup, ControlLabel, HelpBlock, FormControl, Checkbox, Radio } from 'react-bootstrap'
 const apiUrl = 'https://basement-windows.herokuapp.com'
+// const apiUrl = 'http://localhost:4000'
 const userId = 1 // Eventually needs to be obtained from session token
+const username = 'Baatzy'
 
 
 function FieldGroup({ id, label, help, ...props }) {
@@ -27,6 +29,8 @@ class NewProtocolForm extends Component {
       newProtocolDuration: '',
       newProtocolDescription: '',
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   changeName (e) {
@@ -50,12 +54,32 @@ class NewProtocolForm extends Component {
     this.setState({ newProtocolDescription })
   }
 
-  postProtocl () {
-    console.log('Hit post func!')
+  async handleSubmit (e) {
+    e.preventDefault()
+
+    const json_protocol = {
+      name: this.state.newProtocolName,
+      category: this.state.newProtocolSystem,
+      duration: this.state.newProtocolDuration,
+      description: this.state.newProtocolDescription,
+      muscleGroup: this.state.newProtocolMuscle,
+    }
+    const newProtocol = {
+      author_user_id: userId,
+      author_username: username,
+      json_protocol,
+    }
+
+    try {
+      let posted = await axios.post(`${apiUrl}/protocols`, newProtocol)
+    } catch (err) {
+      console.error(err)
+    }
+
     this.setState({
       newProtocolName: '',
-      newProtocolMuscle: '',
-      newProtocolSystem: '',
+      newProtocolMuscle: 'Fingers',
+      newProtocolSystem: 'Strength',
       newProtocolDuration: '',
       newProtocolDescription: '',
     })
@@ -134,7 +158,7 @@ class NewProtocolForm extends Component {
             </FormControl.Static>
           </FormGroup>
 
-          <Button type="submit">
+          <Button onClick={this.handleSubmit} type="submit">
             Submit
           </Button>
         </form>

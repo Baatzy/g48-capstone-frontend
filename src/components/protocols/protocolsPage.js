@@ -6,6 +6,7 @@ import { Button, Panel, Grid, Col, Glyphicon } from 'react-bootstrap'
 // import { displayProtocolCards } from '../../Utilities/functions'
 import { HTMLLoading } from '../../Utilities/htmlSnips'
 const apiUrl = 'https://basement-windows.herokuapp.com'
+// const apiUrl = 'http://localhost:4000'
 const userId = 1 // Eventually needs to be obtained from session token
 
 
@@ -25,7 +26,6 @@ class ProtocolsContainer extends Component {
 
     this.modifyProtocolButtons = this.modifyProtocolButtons.bind(this)
     this.displayProtocolCards = this.displayProtocolCards.bind(this)
-
   }
 
   displayProtocolCards () {
