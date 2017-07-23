@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { NavContainer } from '../navbar/navbar'
 import { Link } from 'react-router-dom'
-import { Grid, Button, FormGroup, ControlLabel, HelpBlock, FormControl, Checkbox, Radio } from 'react-bootstrap'
+import { Grid, Button, FormGroup, ControlLabel, HelpBlock, FormControl } from 'react-bootstrap'
 const apiUrl = 'https://basement-windows.herokuapp.com'
 // const apiUrl = 'http://localhost:4000'
 const userId = 1 // Eventually needs to be obtained from session token
@@ -88,11 +88,6 @@ class NewProtocolForm extends Component {
   render () {
     return (
       <Grid>
-      <div>protocolInputName: {this.state.newProtocolName}</div>
-      <div>protocolInputMuscle: {this.state.newProtocolMuscle}</div>
-      <div>protocolInputSystem: {this.state.newProtocolSystem}</div>
-      <div>protocolInputDuration: {this.state.newProtocolDuration}</div>
-      <div>protocolInputDescription: {this.state.newProtocolDescription}</div>
         <form>
           <FieldGroup
             value={this.newProtocolName}
@@ -167,12 +162,11 @@ class NewProtocolForm extends Component {
   }
 }
 
-
 class NewProtocolPage extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      navTitle: 'Add Protocol',
+      navTitle: 'Protocols',
 
     }
   }
