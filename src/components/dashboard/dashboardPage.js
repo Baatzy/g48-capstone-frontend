@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { NavContainer } from '../navbar/navbar'
-import { Button, Grid, Glyphicon } from 'react-bootstrap'
+import { Button, Glyphicon } from 'react-bootstrap'
 import { dateStringFixer, displayProtocolCards } from '../../Utilities/functions'
 import { HTMLLoading } from '../../Utilities/htmlSnips'
 const apiUrl = 'https://basement-windows.herokuapp.com'
@@ -14,16 +14,16 @@ function MesocycleContainer(props) {
     <div>
       <p>Mesocycle focus: {props.logbook.mainFocus}</p>
     </div>
-  ) 
+  )
 }
 
 class TrainNowButtons extends Component {
   render () {
     return (
       <div>
-        <Link to='/logs/new'>
+        <Link to='/logbook/new'>
           <Button bsStyle="danger" bsSize="large">
-            Train Now 🔥
+            Train Now
           </Button>
         </Link>
       </div>
@@ -37,7 +37,12 @@ class ViewCalendarButtons extends Component {
       <div>
         <Link to='/logbook'>
           <Button bsStyle="info" bsSize="large">
-            My Logbook 📓
+            My Logbook
+          </Button>
+        </Link>
+        <Link to='/logbook/new'>
+          <Button bsStyle="info" bsSize="large">
+            <Glyphicon glyph="plus" />
           </Button>
         </Link>
       </div>
@@ -51,7 +56,7 @@ class ViewProtocolsButtons extends Component {
       <div>
         <Link to='/protocols'>
           <Button bsStyle="warning" bsSize="large">
-            Protocols ⭐️
+            Protocols
           </Button>
         </Link>
         <Link to='/protocols/new'>

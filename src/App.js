@@ -17,7 +17,7 @@ class App extends Component {
           <Route exact path='/' component={LoginPage} />
           <Route exact path='/dashboard' component={DashboardPage} />
           <Route exact path='/logbook' component={LogsPage} />
-          <Route exact path='/logs/new' component={NewLogPage} />
+          <Route exact path='/logbook/new' component={NewLogPage} />
           <Route exact path='/protocols' component={ProtocolsPage} />
           <Route exact path='/protocols/new' component={NewProtocolPage} />
         </Switch>

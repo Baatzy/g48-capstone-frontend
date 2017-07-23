@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { NavContainer } from '../navbar/navbar'
-import { Link } from 'react-router-dom'
 import { Grid, Button, FormGroup, ControlLabel, HelpBlock, FormControl } from 'react-bootstrap'
 const apiUrl = 'https://basement-windows.herokuapp.com'
 // const apiUrl = 'http://localhost:4000'
@@ -144,13 +143,6 @@ class NewProtocolForm extends Component {
           onChange={this.changeDescription.bind(this)}>
             <ControlLabel>Description</ControlLabel>
             <FormControl componentClass="textarea" placeholder="Explain this protocol" />
-          </FormGroup>
-
-          <FormGroup>
-            <ControlLabel>Static text</ControlLabel>
-            <FormControl.Static>
-              email@example.com
-            </FormControl.Static>
           </FormGroup>
 
           <Button onClick={this.handleSubmit} type="submit">
