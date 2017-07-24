@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Panel, Grid, Col, Glyphicon } from 'react-bootstrap'
+import { Button, Panel, Col, Glyphicon } from 'react-bootstrap'
 import { HTMLLoading } from './htmlSnips'
 
 // GENERAL USE // ***************************************************** //

@@ -33,7 +33,7 @@ function CalculateSessionDuration (protocols, protocolIdArr) {
   protocolIdArr = protocolIdArr.filter(id => {
     return id !== "0" || 0
   })
-  // console.log(protocolIdArr)
+
   protocolIdArr.forEach(id => {
     protocols.forEach(protocol => {
       if (id === protocol.id) {
@@ -76,8 +76,6 @@ class NewLogForm extends Component {
     })
     logbook = logbook[0]['json_logbook']
 
-    console.log('logbook', logbook)
-    console.log('protocols', protocols)
     this.setState({ logbook, protocols })
   }
 
@@ -145,11 +143,8 @@ class NewLogForm extends Component {
       }
     }
 
-    console.log('updatedLogbook before PUT', updatedLogbook);
-
     try {
       let updated = await axios.put(`${apiUrl}/logbooks/${userId}`, updatedLogbook)
-      console.log('updated', updated);
     } catch (err) {
       console.error(err)
     }
