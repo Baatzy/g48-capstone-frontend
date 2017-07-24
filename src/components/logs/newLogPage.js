@@ -8,7 +8,7 @@ var DatePicker = require("react-bootstrap-date-picker")
 var moment = require('moment')
 
 const apiUrl = 'https://basement-windows.herokuapp.com'
-const userId = 3 // Eventually needs to be obtained from session token
+const userId = 1 // Eventually needs to be obtained from session token
 const username = 'Baatzy'
 
 
