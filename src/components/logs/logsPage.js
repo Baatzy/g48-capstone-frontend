@@ -173,7 +173,6 @@ class LogsContainer extends Component {
               <Button onClick={false} bsStyle="warning"><Glyphicon glyph="edit" /></Button>
               <Button onClick={this.handleDeleteLog.bind(this, index)} bsStyle="danger"><Glyphicon glyph="trash" /></Button>
             </div>
-            Index is: {index}
           </Panel>
         </Col>
       </div>
@@ -211,6 +210,13 @@ class LogsPage extends Component {
     return (
       <div>
         <NavContainer navTitle={this.state.navTitle}/>
+        <Link to='/logbook/new'>
+          <Button bsStyle="info" bsSize="large">
+            Add New Log
+          </Button>
+        </Link>
+        <br />
+        <br />
         <LogsContainer />
       </div>
     )

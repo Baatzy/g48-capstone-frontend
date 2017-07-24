@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import { NavContainer } from '../navbar/navbar'
 import { Link } from 'react-router-dom'
@@ -49,6 +50,7 @@ class NewLogForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      redirect: false,
       newLogDate: moment().format(),
       logbook: {},
       protocols: [],
@@ -145,12 +147,17 @@ class NewLogForm extends Component {
 
     try {
       let updated = await axios.put(`${apiUrl}/logbooks/${userId}`, updatedLogbook)
+      this.setState({ redirect: true })
     } catch (err) {
       console.error(err)
     }
   }
 
   render () {
+    const { redirect } = this.state;
+
+     if (redirect) return <Redirect to='/logbook' />
+
     return (
       <Grid>
         <form>

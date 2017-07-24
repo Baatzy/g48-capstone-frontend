@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 
 
-class DashboardButton extends Component {
+class NewUserForm extends Component {
   render () {
     return (
       <Link to='/dashboard'>
@@ -20,7 +20,7 @@ class LoginPage extends Component {
     return (
       <div>
         <h1>This is the login page</h1>
-        <DashboardButton />
+        <NewUserForm />
       </div>
     )
   }
