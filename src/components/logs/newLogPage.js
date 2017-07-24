@@ -4,11 +4,12 @@ import { NavContainer } from '../navbar/navbar'
 import { Link } from 'react-router-dom'
 import { Grid, Button, FormGroup, ControlLabel, HelpBlock, FormControl } from 'react-bootstrap'
 import { dateStringFixer } from '../../Utilities/functions'
+var DatePicker = require("react-bootstrap-date-picker")
+var moment = require('moment')
+
 const apiUrl = 'https://basement-windows.herokuapp.com'
-// const apiUrl = 'http://localhost:4000'
 const userId = 3 // Eventually needs to be obtained from session token
 const username = 'Baatzy'
-var DatePicker = require("react-bootstrap-date-picker")
 
 
 function FieldGroup({ id, label, help, ...props }) {
@@ -48,7 +49,7 @@ class NewLogForm extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      newLogDate: new Date().toISOString(),
+      newLogDate: moment().format(),
       logbook: {},
       protocols: [],
       // TO UPDATE WITH AUTH ***********************************
