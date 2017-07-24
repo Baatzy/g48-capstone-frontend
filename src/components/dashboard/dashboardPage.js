@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { NavContainer } from '../navbar/navbar'
-import { Button, Glyphicon } from 'react-bootstrap'
+import { Button, Glyphicon, Well, Grid } from 'react-bootstrap'
 import { dateStringFixer, displayProtocolCards } from '../../Utilities/functions'
 import { HTMLLoading } from '../../Utilities/htmlSnips'
 const apiUrl = 'https://basement-windows.herokuapp.com'
@@ -12,7 +12,7 @@ const userId = 1 // Eventually needs to be obtained from session token
 function MesocycleContainer(props) {
   return (
     <div>
-      <p>Mesocycle focus: {props.logbook.mainFocus}</p>
+      <h4>Mesocycle focus: {props.logbook.mainFocus}</h4>
     </div>
   )
 }
@@ -88,11 +88,14 @@ class SnapshotContainer extends Component {
       protocolsArr.reverse()
 
       return (
-        <div>
-          <h4>Next training day on {dateStringFixer(log.date)}</h4>
-          <h4>Training protocols:</h4>
-          {displayProtocolCards(protocolsArr)}
-        </div>
+        <Grid>
+          <br />
+          <div>
+            <h4>Next training day on {dateStringFixer(log.date)}</h4>
+            <h4>Training protocols:</h4>
+            {displayProtocolCards(protocolsArr)}
+          </div>
+        </Grid>
       )
     }
   }
@@ -125,6 +128,7 @@ class DashboardPage extends Component {
       <div>
         <NavContainer navTitle={this.state.navTitle}/>
         <MesocycleContainer logbook={this.state.logbook}/>
+        <br />
         <TrainNowButtons />
         <ViewCalendarButtons />
         <ViewProtocolsButtons />

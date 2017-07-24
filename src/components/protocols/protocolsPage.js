@@ -55,8 +55,8 @@ class ProtocolsContainer extends Component {
     if (userId === authorId) {
       return (
         <div>
-          <Button onClick={() => this.props.handleDelete(protocolId)}><Glyphicon glyph="trash" /></Button>
-          <Button><Glyphicon glyph="edit" /></Button>
+          <Button bsStyle="warning"><Glyphicon glyph="edit" /></Button>
+          <Button onClick={() => this.props.handleDelete(protocolId)}  bsStyle="danger"><Glyphicon glyph="trash" /></Button>
         </div>
       )
     } else {
