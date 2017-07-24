@@ -145,7 +145,9 @@ class NewProtocolForm extends Component {
             <FormControl componentClass="textarea" placeholder="Explain this protocol" />
           </FormGroup>
 
-          <Button onClick={this.handleSubmit} type="submit">
+          <br />
+
+          <Button onClick={this.handleSubmit} type="submit" bsStyle="success">
             Submit
           </Button>
         </form>

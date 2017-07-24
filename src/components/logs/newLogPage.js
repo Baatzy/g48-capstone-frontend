@@ -6,7 +6,7 @@ import { Grid, Button, FormGroup, ControlLabel, HelpBlock, FormControl } from 'r
 import { dateStringFixer } from '../../Utilities/functions'
 const apiUrl = 'https://basement-windows.herokuapp.com'
 // const apiUrl = 'http://localhost:4000'
-const userId = 1 // Eventually needs to be obtained from session token
+const userId = 3 // Eventually needs to be obtained from session token
 const username = 'Baatzy'
 var DatePicker = require("react-bootstrap-date-picker")
 
@@ -27,6 +27,23 @@ function SelectProtocolsList (protocolsArr) {
   )
 }
 
+function CalculateSessionDuration (protocols, protocolIdArr) {
+  let sum = 0
+  protocolIdArr = protocolIdArr.filter(id => {
+    return id !== "0" || 0
+  })
+  // console.log(protocolIdArr)
+  protocolIdArr.forEach(id => {
+    protocols.forEach(protocol => {
+      if (id === protocol.id) {
+        sum += protocol.json_protocol.duration
+      }
+    })
+  })
+
+  return sum
+}
+
 class NewLogForm extends Component {
   constructor(props) {
     super(props)
@@ -36,13 +53,10 @@ class NewLogForm extends Component {
       protocols: [],
       // TO UPDATE WITH AUTH ***********************************
       newLogUserId: userId,
-      newLogDuration: 0,
-      newLogCompleted: 'null',
-      newLogProtocols: [],
-      newLogProtocol1: 0,
-      newLogProtocol2: 0,
-      newLogProtocol3: 0,
-      newLogProtocol4: 0,
+      newLogCompleted: null,
+      newLogProtocolId1: 0,
+      newLogProtocolId2: 0,
+      newLogProtocolId3: 0,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -58,88 +72,79 @@ class NewLogForm extends Component {
     })
     logbook = logbook[0]['json_logbook']
 
-    // console.log('logbook', logbook)
+    console.log('logbook', logbook)
     console.log('protocols', protocols)
     this.setState({ logbook, protocols })
   }
 
-  changeDate (e) {
-    const newLogDate = e.target.value
+  changeDate (datestamp) {
+    const newLogDate = datestamp
     this.setState({ newLogDate })
   }
   changeProtocol1 (e) {
-    const newLogProtocols = e.target.value
-    this.setState({ newLogProtocols })
+    const newLogProtocolId1 = e.target.value
+    this.setState({ newLogProtocolId1 })
   }
   changeProtocol2 (e) {
-    const newLogProtocols = e.target.value
-    this.setState({ newLogProtocols })
+    const newLogProtocolId2 = e.target.value
+    this.setState({ newLogProtocolId2 })
   }
   changeProtocol3 (e) {
-    const newLogProtocols = e.target.value
-    this.setState({ newLogProtocols })
+    const newLogProtocolId3 = e.target.value
+    this.setState({ newLogProtocolId3 })
   }
-  changeProtocol4 (e) {
-    const newLogProtocols = e.target.value
-    this.setState({ newLogProtocols })
-  }
-  changeWarmupNotes (e) {
-    const newLogWarmupNotes = e.target.value
-    this.setState({ newLogWarmupNotes })
-  }
-  newLogSessionNotes (e) {
-    const newLogSessionNotes = e.target.value
-    this.setState({ newLogSessionNotes })
-  }
-  // changeDescription (e) {
-  //   const newProtocolDescription = e.target.value
-  //   this.setState({ newProtocolDescription })
-  // }
 
   async handleSubmit (e) {
     e.preventDefault()
 
-    const json_protocol = {
-      name: this.state.newProtocolName,
-      category: this.state.newProtocolSystem,
-      duration: this.state.newProtocolDuration,
-      description: this.state.newProtocolDescription,
-      muscleGroup: this.state.newProtocolMuscle,
-    }
-    const newProtocol = {
-      author_user_id: userId,
-      author_username: username,
-      json_protocol,
+    let protocolIdArr = [
+      parseInt(this.state.newLogProtocolId1),
+      parseInt(this.state.newLogProtocolId2),
+      parseInt(this.state.newLogProtocolId3),
+    ]
+    protocolIdArr = protocolIdArr.filter(id => {
+      return id !== 0
+    })
+
+    const durationFinal = CalculateSessionDuration (this.state.protocols, protocolIdArr)
+
+    const newLog = {
+      date: this.state.newLogDate,
+      duration: durationFinal,
+      completed: this.state.newLogCompleted,
+      protocols: protocolIdArr,
+      warmupNotes: "",
+      sessionNotes: "",
     }
 
+    this.state.logbook.schedule.push(newLog)
+
+    const updatedLogbook = {
+      id: userId,
+      user_id: userId,
+      json_logbook: {
+        schedule: this.state.logbook.schedule,
+        mainFocus: this.state.logbook.mainFocus,
+      }
+    }
+
+    console.log('updatedLogbook before PUT', updatedLogbook);
+
     try {
-      let posted = await axios.post(`${apiUrl}/protocols`, newProtocol)
+      let updated = await axios.put(`${apiUrl}/logbooks/${userId}`, updatedLogbook)
+      console.log('updated', updated);
     } catch (err) {
       console.error(err)
     }
-
-    this.setState({
-      newProtocolName: '',
-      newProtocolMuscle: 'Fingers',
-      newProtocolSystem: 'Strength',
-      newProtocolDuration: '',
-      newProtocolDescription: '',
-    })
   }
 
   render () {
     return (
       <Grid>
         <p>Raw date: {this.state.newLogDate}</p>
-        <p>Fixed date: {dateStringFixer(new Date().toISOString())}</p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
-        <p></p>
+        <p>{this.state.newLogProtocolId1}</p>
+        <p>{this.state.newLogProtocolId2}</p>
+        <p>{this.state.newLogProtocolId3}</p>
 
         <form>
           <FormGroup controlId="formControlsTextarea">
@@ -152,6 +157,7 @@ class NewLogForm extends Component {
             <FormControl componentClass="select" placeholder="select"
             value={this.newLogProtocols}
             onChange={this.changeProtocol1.bind(this)}>
+              <option value="0">Select protocol</option>
               {SelectProtocolsList(this.state.protocols)}
             </FormControl>
           </FormGroup>
@@ -161,17 +167,8 @@ class NewLogForm extends Component {
             <FormControl componentClass="select" placeholder="select"
             value={this.newLogProtocols}
             onChange={this.changeProtocol2.bind(this)}>
-              <option value="Fingers">Fingers</option>
-              <option value="Wrists">Wrists</option>
-              <option value="Biceps">Biceps</option>
-              <option value="Triceps">Triceps</option>
-              <option value="Elbows">Elbows</option>
-              <option value="Chest">Chest</option>
-              <option value="Shoulders">Shoulders</option>
-              <option value="Core">Core</option>
-              <option value="Lower Back">Lower back</option>
-              <option value="Legs">Legs</option>
-              <option value="Ankles">Ankles</option>
+              <option value="0">Select protocol</option>
+              {SelectProtocolsList(this.state.protocols)}
             </FormControl>
           </FormGroup>
 
@@ -180,65 +177,19 @@ class NewLogForm extends Component {
             <FormControl componentClass="select" placeholder="select"
             value={this.newLogProtocols}
             onChange={this.changeProtocol3.bind(this)}>
-              <option value="Fingers">Fingers</option>
-              <option value="Wrists">Wrists</option>
-              <option value="Biceps">Biceps</option>
-              <option value="Triceps">Triceps</option>
-              <option value="Elbows">Elbows</option>
-              <option value="Chest">Chest</option>
-              <option value="Shoulders">Shoulders</option>
-              <option value="Core">Core</option>
-              <option value="Lower Back">Lower back</option>
-              <option value="Legs">Legs</option>
-              <option value="Ankles">Ankles</option>
-            </FormControl>
-          </FormGroup>
-
-          <FormGroup controlId="formControlsSelect">
-            <ControlLabel>Protocol 4</ControlLabel>
-            <FormControl componentClass="select" placeholder="select"
-            value={this.newLogProtocols}
-            onChange={this.changeProtocol4.bind(this)}>
-              <option value="Fingers">Fingers</option>
-              <option value="Wrists">Wrists</option>
-              <option value="Biceps">Biceps</option>
-              <option value="Triceps">Triceps</option>
-              <option value="Elbows">Elbows</option>
-              <option value="Chest">Chest</option>
-              <option value="Shoulders">Shoulders</option>
-              <option value="Core">Core</option>
-              <option value="Lower Back">Lower back</option>
-              <option value="Legs">Legs</option>
-              <option value="Ankles">Ankles</option>
+              <option value="0">Select protocol</option>
+              {SelectProtocolsList(this.state.protocols)}
             </FormControl>
           </FormGroup>
 
           <br />
 
-          <FormGroup>
-            <ControlLabel>Approximate session duration w/o warmup:</ControlLabel>
-            <FormControl.Static>
-              ADD CALCULATION HERE
-            </FormControl.Static>
-          </FormGroup>
-
-          <Button onClick={this.handleSubmit} type="submit">
+          <Button onClick={this.handleSubmit} type="submit" bsStyle="success">
             Submit
           </Button>
         </form>
       </Grid>
     )
-  }
-}
-
-class EXTRA extends Component {
-  async postProtocol () {
-    let posted = await axios.post(`${apiUrl}/protocols`)
-
-    let protocols = await axios.get(`${apiUrl}/protocols`)
-    protocols = protocols.data
-
-    this.setState({ protocols })
   }
 }
 
