@@ -58,6 +58,7 @@ class NewLogForm extends Component {
       newLogProtocolId1: 0,
       newLogProtocolId2: 0,
       newLogProtocolId3: 0,
+      newLogProtocolId4: 0,
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -94,6 +95,10 @@ class NewLogForm extends Component {
     const newLogProtocolId3 = e.target.value
     this.setState({ newLogProtocolId3 })
   }
+  changeProtocol4 (e) {
+    const newLogProtocolId4 = e.target.value
+    this.setState({ newLogProtocolId4 })
+  }
 
   async handleSubmit (e) {
     e.preventDefault()
@@ -102,6 +107,7 @@ class NewLogForm extends Component {
       parseInt(this.state.newLogProtocolId1),
       parseInt(this.state.newLogProtocolId2),
       parseInt(this.state.newLogProtocolId3),
+      parseInt(this.state.newLogProtocolId4),
     ]
     protocolIdArr = protocolIdArr.filter(id => {
       return id !== 0
@@ -142,11 +148,6 @@ class NewLogForm extends Component {
   render () {
     return (
       <Grid>
-        <p>Raw date: {this.state.newLogDate}</p>
-        <p>{this.state.newLogProtocolId1}</p>
-        <p>{this.state.newLogProtocolId2}</p>
-        <p>{this.state.newLogProtocolId3}</p>
-
         <form>
           <FormGroup controlId="formControlsTextarea">
             <ControlLabel>Date</ControlLabel>
@@ -178,6 +179,16 @@ class NewLogForm extends Component {
             <FormControl componentClass="select" placeholder="select"
             value={this.newLogProtocols}
             onChange={this.changeProtocol3.bind(this)}>
+              <option value="0">Select protocol</option>
+              {SelectProtocolsList(this.state.protocols)}
+            </FormControl>
+          </FormGroup>
+
+          <FormGroup controlId="formControlsSelect">
+            <ControlLabel>Protocol 4</ControlLabel>
+            <FormControl componentClass="select" placeholder="select"
+            value={this.newLogProtocols}
+            onChange={this.changeProtocol4.bind(this)}>
               <option value="0">Select protocol</option>
               {SelectProtocolsList(this.state.protocols)}
             </FormControl>
