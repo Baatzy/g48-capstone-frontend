@@ -59,6 +59,8 @@ class NewLogForm extends Component {
       newLogProtocolId2: 0,
       newLogProtocolId3: 0,
       newLogProtocolId4: 0,
+      newLogWarmupNotes: '',
+      newLogSessionNotes: '',
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -79,8 +81,8 @@ class NewLogForm extends Component {
     this.setState({ logbook, protocols })
   }
 
-  changeDate (datestamp) {
-    const newLogDate = datestamp
+  changeDate (e) {
+    const newLogDate = e
     this.setState({ newLogDate })
   }
   changeProtocol1 (e) {
@@ -98,6 +100,14 @@ class NewLogForm extends Component {
   changeProtocol4 (e) {
     const newLogProtocolId4 = e.target.value
     this.setState({ newLogProtocolId4 })
+  }
+  changeWarmupNotes (e) {
+    const newLogWarmupNotes = e.target.value
+    this.setState({ newLogWarmupNotes })
+  }
+  changeSessionNotes (e) {
+    const newLogSessionNotes = e.target.value
+    this.setState({ newLogSessionNotes })
   }
 
   async handleSubmit (e) {
@@ -120,8 +130,8 @@ class NewLogForm extends Component {
       duration: durationFinal,
       completed: this.state.newLogCompleted,
       protocols: protocolIdArr,
-      warmupNotes: "",
-      sessionNotes: "",
+      warmupNotes: this.state.newLogWarmupNotes,
+      sessionNotes: this.state.newLogSessionNotes,
     }
 
     this.state.logbook.schedule.push(newLog)
@@ -192,6 +202,20 @@ class NewLogForm extends Component {
               <option value="0">Select protocol</option>
               {SelectProtocolsList(this.state.protocols)}
             </FormControl>
+          </FormGroup>
+
+          <FormGroup controlId="formControlsTextarea"
+          value={this.newLogWarmupNotes}
+          onChange={this.changeWarmupNotes.bind(this)}>
+            <ControlLabel>Warmup Notes</ControlLabel>
+            <FormControl componentClass="textarea" placeholder="Add warmup notes for this workout" />
+          </FormGroup>
+
+          <FormGroup controlId="formControlsTextarea"
+          value={this.newLogSessionNotes}
+          onChange={this.changeSessionNotes.bind(this)}>
+            <ControlLabel>Session Notes</ControlLabel>
+            <FormControl componentClass="textarea" placeholder="Add session notes for this workout" />
           </FormGroup>
 
           <br />
