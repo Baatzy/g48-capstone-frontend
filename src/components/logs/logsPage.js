@@ -61,6 +61,41 @@ class LogsContainer extends Component {
     }
   }
 
+  async handleCycleCompletedLog (index, e) {
+    e.preventDefault()
+
+    if (this.state.logbook[index].completed === null) {
+      this.state.logbook[index].completed = true
+    } else if (this.state.logbook[index].completed) {
+      this.state.logbook[index].completed = false
+    } else (
+      this.state.logbook[index].completed = null
+    )
+
+    let updatedLogbook = {
+      id: userId,
+      user_id: userId,
+      json_logbook: {
+        schedule: this.state.logbook,
+        mainFocus: this.state.mainFocus,
+      }
+    }
+
+    try {
+      let updated = await axios.put(`${apiUrl}/logbooks/${userId}`, updatedLogbook)
+      let logbooks = await axios.get(`${apiUrl}/logbooks`)
+      logbooks = logbooks.data
+      let logbook = logbooks.filter(logbook => {
+        return logbook['user_id'] === userId
+      })
+      logbook = logbook[0].json_logbook.schedule
+
+      this.setState({ logbook })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
   dateStringFixer (dateStr) {
     if (!dateStr) return '...not sure actually.'
 
@@ -128,7 +163,7 @@ class LogsContainer extends Component {
             <p>Warmup: {log.warmupNotes}</p>
             <p>Session: {log.sessionNotes}</p>
             <div>
-              <Button onClick={false} bsStyle="info"><Glyphicon glyph="refresh" /></Button>
+              <Button onClick={this.handleCycleCompletedLog.bind(this, index)} bsStyle="info"><Glyphicon glyph="refresh" /></Button>
               <Button onClick={false} bsStyle="warning"><Glyphicon glyph="edit" /></Button>
               <Button onClick={this.handleDeleteLog.bind(this, index)} bsStyle="danger"><Glyphicon glyph="trash" /></Button>
             </div>
