@@ -46,6 +46,8 @@ class LogsContainer extends Component {
       }
     }
 
+    this.state.logbook.reverse()
+
     try {
       let updated = await axios.put(`${apiUrl}/logbooks/${userId}`, updatedLogbook)
       let logbooks = await axios.get(`${apiUrl}/logbooks`)
@@ -54,6 +56,7 @@ class LogsContainer extends Component {
         return logbook['user_id'] === userId
       })
       logbook = logbook[0].json_logbook.schedule
+      logbook.reverse()
 
       this.setState({ logbook })
     } catch (err) {
@@ -81,6 +84,8 @@ class LogsContainer extends Component {
       }
     }
 
+    this.state.logbook.reverse()
+
     try {
       let updated = await axios.put(`${apiUrl}/logbooks/${userId}`, updatedLogbook)
       let logbooks = await axios.get(`${apiUrl}/logbooks`)
@@ -89,6 +94,7 @@ class LogsContainer extends Component {
         return logbook['user_id'] === userId
       })
       logbook = logbook[0].json_logbook.schedule
+      logbook.reverse()
 
       this.setState({ logbook })
     } catch (err) {
