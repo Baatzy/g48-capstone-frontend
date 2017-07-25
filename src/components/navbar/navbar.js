@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { } from 'react-bootstrap'
+import { Glyphicon } from 'react-bootstrap'
 import { Navbar, Nav, NavItem }  from 'react-bootstrap'
+import { headerStyle, navIcon } from './navbar-style'
 
 
 class NavContainer extends Component {
@@ -9,10 +10,10 @@ class NavContainer extends Component {
     return (
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
-          <Navbar.Brand>
-            <Link to='/dashboard'>⚡️ The Boardroom ⚡️</Link>
+          <Navbar.Brand >
+            <Link to='/dashboard'><Glyphicon glyph="home" style={navIcon} /></Link>
           </Navbar.Brand>
-          <Navbar.Brand>
+          <Navbar.Brand style={headerStyle}>
             {this.props.navTitle}
           </Navbar.Brand>
           <Navbar.Toggle />

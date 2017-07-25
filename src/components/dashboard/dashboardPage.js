@@ -56,7 +56,7 @@ class ViewProtocolsButtons extends Component {
       <div>
         <Link to='/protocols'>
           <Button bsStyle="warning" bsSize="large">
-            Protocols
+            See All Protocols
           </Button>
         </Link>
         <Link to='/protocols/new'>

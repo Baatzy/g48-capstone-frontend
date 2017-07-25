@@ -6,7 +6,7 @@ import { ProtocolsPage } from './components/protocols/protocolsPage'
 import { NewProtocolPage } from './components/protocols/newProtocolPage'
 import { LogsPage } from './components/logs/logsPage'
 import { NewLogPage } from './components/logs/newLogPage'
-import './App.css';
+import './App.css'
 
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
           <Route exact path='/protocols/new' component={NewProtocolPage} />
         </Switch>
       </div>
-    );
+    )
   }
 }
 

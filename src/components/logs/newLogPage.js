@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import { NavContainer } from '../navbar/navbar'
 import { Link } from 'react-router-dom'
-import { Grid, Button, FormGroup, ControlLabel, HelpBlock, FormControl } from 'react-bootstrap'
+import { Grid, Button, FormGroup, ControlLabel, HelpBlock, FormControl, Well } from 'react-bootstrap'
 import { dateStringFixer } from '../../Utilities/functions'
 var DatePicker = require("react-bootstrap-date-picker")
 var moment = require('moment')
@@ -160,72 +160,74 @@ class NewLogForm extends Component {
 
     return (
       <Grid>
-        <form>
-          <FormGroup controlId="formControlsTextarea">
-            <ControlLabel>Date</ControlLabel>
-            <DatePicker value={this.state.newLogDate} onChange={this.changeDate.bind(this)} />
-          </FormGroup>
+        <Well>
+          <form>
+            <FormGroup controlId="formControlsTextarea">
+              <ControlLabel>Date</ControlLabel>
+              <DatePicker value={this.state.newLogDate} onChange={this.changeDate.bind(this)} />
+            </FormGroup>
 
-          <FormGroup controlId="formControlsSelect">
-            <ControlLabel>Protocol 1</ControlLabel>
-            <FormControl componentClass="select" placeholder="select"
-            value={this.newLogProtocols}
-            onChange={this.changeProtocol1.bind(this)}>
-              <option value="0">Select protocol</option>
-              {SelectProtocolsList(this.state.protocols)}
-            </FormControl>
-          </FormGroup>
+            <FormGroup controlId="formControlsSelect">
+              <ControlLabel>Protocol 1</ControlLabel>
+              <FormControl componentClass="select" placeholder="select"
+              value={this.newLogProtocols}
+              onChange={this.changeProtocol1.bind(this)}>
+                <option value="0">Select protocol</option>
+                {SelectProtocolsList(this.state.protocols)}
+              </FormControl>
+            </FormGroup>
 
-          <FormGroup controlId="formControlsSelect">
-            <ControlLabel>Protocol 2</ControlLabel>
-            <FormControl componentClass="select" placeholder="select"
-            value={this.newLogProtocols}
-            onChange={this.changeProtocol2.bind(this)}>
-              <option value="0">Select protocol</option>
-              {SelectProtocolsList(this.state.protocols)}
-            </FormControl>
-          </FormGroup>
+            <FormGroup controlId="formControlsSelect">
+              <ControlLabel>Protocol 2</ControlLabel>
+              <FormControl componentClass="select" placeholder="select"
+              value={this.newLogProtocols}
+              onChange={this.changeProtocol2.bind(this)}>
+                <option value="0">Select protocol</option>
+                {SelectProtocolsList(this.state.protocols)}
+              </FormControl>
+            </FormGroup>
 
-          <FormGroup controlId="formControlsSelect">
-            <ControlLabel>Protocol 3</ControlLabel>
-            <FormControl componentClass="select" placeholder="select"
-            value={this.newLogProtocols}
-            onChange={this.changeProtocol3.bind(this)}>
-              <option value="0">Select protocol</option>
-              {SelectProtocolsList(this.state.protocols)}
-            </FormControl>
-          </FormGroup>
+            <FormGroup controlId="formControlsSelect">
+              <ControlLabel>Protocol 3</ControlLabel>
+              <FormControl componentClass="select" placeholder="select"
+              value={this.newLogProtocols}
+              onChange={this.changeProtocol3.bind(this)}>
+                <option value="0">Select protocol</option>
+                {SelectProtocolsList(this.state.protocols)}
+              </FormControl>
+            </FormGroup>
 
-          <FormGroup controlId="formControlsSelect">
-            <ControlLabel>Protocol 4</ControlLabel>
-            <FormControl componentClass="select" placeholder="select"
-            value={this.newLogProtocols}
-            onChange={this.changeProtocol4.bind(this)}>
-              <option value="0">Select protocol</option>
-              {SelectProtocolsList(this.state.protocols)}
-            </FormControl>
-          </FormGroup>
+            <FormGroup controlId="formControlsSelect">
+              <ControlLabel>Protocol 4</ControlLabel>
+              <FormControl componentClass="select" placeholder="select"
+              value={this.newLogProtocols}
+              onChange={this.changeProtocol4.bind(this)}>
+                <option value="0">Select protocol</option>
+                {SelectProtocolsList(this.state.protocols)}
+              </FormControl>
+            </FormGroup>
 
-          <FormGroup controlId="formControlsTextarea"
-          value={this.newLogWarmupNotes}
-          onChange={this.changeWarmupNotes.bind(this)}>
-            <ControlLabel>Warmup Notes</ControlLabel>
-            <FormControl componentClass="textarea" placeholder="Add warmup notes for this workout" />
-          </FormGroup>
+            <FormGroup controlId="formControlsTextarea"
+            value={this.newLogWarmupNotes}
+            onChange={this.changeWarmupNotes.bind(this)}>
+              <ControlLabel>Warmup Notes</ControlLabel>
+              <FormControl componentClass="textarea" placeholder="Add warmup notes for this workout" />
+            </FormGroup>
 
-          <FormGroup controlId="formControlsTextarea"
-          value={this.newLogSessionNotes}
-          onChange={this.changeSessionNotes.bind(this)}>
-            <ControlLabel>Session Notes</ControlLabel>
-            <FormControl componentClass="textarea" placeholder="Add session notes for this workout" />
-          </FormGroup>
+            <FormGroup controlId="formControlsTextarea"
+            value={this.newLogSessionNotes}
+            onChange={this.changeSessionNotes.bind(this)}>
+              <ControlLabel>Session Notes</ControlLabel>
+              <FormControl componentClass="textarea" placeholder="Add session notes for this workout" />
+            </FormGroup>
 
-          <br />
+            <br />
 
-          <Button onClick={this.handleSubmit} type="submit" bsStyle="success">
-            Submit
-          </Button>
-        </form>
+            <Button onClick={this.handleSubmit} type="submit" bsStyle="success">
+              Submit
+            </Button>
+          </form>
+        </Well>
       </Grid>
     )
   }

@@ -187,7 +187,7 @@ class LogsContainer extends Component {
             <p>Warmup: {log.warmupNotes}</p>
             <p>Session: {log.sessionNotes}</p>
             <div>
-              <Button onClick={this.handleCycleCompletedLog.bind(this, index)} bsStyle="info"><Glyphicon glyph="refresh" /></Button>
+              <Button onClick={this.handleCycleCompletedLog.bind(this, index)} bsStyle="success"><Glyphicon glyph="refresh" /></Button>
               <Button onClick={false} bsStyle="warning"><Glyphicon glyph="edit" /></Button>
               <Button onClick={this.handleDeleteLog.bind(this, index)} bsStyle="danger"><Glyphicon glyph="trash" /></Button>
             </div>
@@ -230,7 +230,7 @@ class LogsPage extends Component {
         <NavContainer navTitle={this.state.navTitle}/>
         <Link to='/logbook/new'>
           <Button bsStyle="info" bsSize="large">
-            Add New Log
+            Add New Log <Glyphicon glyph="plus" />
           </Button>
         </Link>
         <br />
