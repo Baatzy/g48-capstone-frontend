@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Grid, FormGroup, ControlLabel, HelpBlock, FormControl, Well } from 'react-bootstrap'
-
+import { centerWellSignup, centerWellLogin, parentElement, backgroundImage, logoFont } from './loginPage-style'
 
 function FieldGroup({ id, label, help, ...props }) {
   return (
@@ -37,48 +37,49 @@ class LoginForm extends Component {
   async handleSubmit (e) {
     e.preventDefault()
 
-
-
-
   }
 
   render () {
     if (this.props.showLogin) {
       return (
-        <Grid>
-          <Well>
-          <h3>Login</h3>
-          <p>userEmail: {this.state.userEmail}</p>
-          <p>userPassword: {this.state.userPassword}</p>
-            <form>
-              <FieldGroup
-                value={this.userEmail}
-                onChange={this.changeEmail.bind(this)}
-                id="formControlsText"
-                type="text"
-                label="Email"
-                placeholder="Enter email"
-              />
+        <div>
+          <h1 style={logoFont}>BOARDROOM</h1>
+          <Grid>
+            <Well>
+            <h3>Login</h3>
+              <form>
+                <FieldGroup
+                  value={this.userEmail}
+                  onChange={this.changeEmail.bind(this)}
+                  id="formControlsText"
+                  type="text"
+                  label="Email"
+                  placeholder="Enter email"
+                />
 
-              <FieldGroup
-                value={this.userPassword}
-                onChange={this.changePassword.bind(this)}
-                id="formControlsText"
-                type="text"
-                label="Password"
-                placeholder="Enter password"
-              />
-            </form>
+                <FieldGroup
+                  value={this.userPassword}
+                  onChange={this.changePassword.bind(this)}
+                  id="formControlsText"
+                  type="text"
+                  label="Password"
+                  placeholder="Enter password"
+                />
+              </form>
 
-            <Button bsStyle="info">
-              Sign in
-            </Button>
-            <br />
-            <a onClick={this.props.handleBoolean}>
-              Click here to create an account.
-            </a>
-          </Well>
-        </Grid>
+              <Link to='/dashboard'>
+                <Button bsStyle="info">
+                    Sign in
+                </Button>
+              </Link>
+
+              <br />
+              <a onClick={this.props.handleBoolean}>
+                Click here to create an account.
+              </a>
+            </Well>
+          </Grid>
+        </div>
       )
     } else {
       return (
@@ -117,58 +118,58 @@ class SignUpForm extends Component {
   async handleSubmit (e) {
     e.preventDefault()
 
-
-
-
   }
 
   render () {
     if (!this.props.showLogin) {
       return (
-        <Grid>
-          <Well>
-            <h3>Sign Up</h3>
-            <p>newUsername: {this.state.newUsername}</p>
-            <p>newUserEmail: {this.state.newUserEmail}</p>
-            <p>newUserPassword: {this.state.newUserPassword}</p>
-            <form>
-              <FieldGroup
-                value={this.newUsername}
-                onChange={this.changeUsername.bind(this)}
-                id="formControlsText"
-                type="text"
-                label="Username"
-                placeholder="Choose username"
-              />
+        <div>
+          <h1 style={logoFont}>BOARDROOM</h1>
+          <Grid>
+            <Well>
+              <h3>Sign Up</h3>
+              <form>
+                <FieldGroup
+                  value={this.newUsername}
+                  onChange={this.changeUsername.bind(this)}
+                  id="formControlsText"
+                  type="text"
+                  label="Username"
+                  placeholder="Choose username"
+                />
 
-              <FieldGroup
-                value={this.newUserEmail}
-                onChange={this.changeEmail.bind(this)}
-                id="formControlsText"
-                type="text"
-                label="Email"
-                placeholder="Add email"
-              />
+                <FieldGroup
+                  value={this.newUserEmail}
+                  onChange={this.changeEmail.bind(this)}
+                  id="formControlsText"
+                  type="text"
+                  label="Email"
+                  placeholder="Enter email"
+                />
 
-              <FieldGroup
-                value={this.newUserEmail}
-                onChange={this.changePassword.bind(this)}
-                id="formControlsText"
-                type="text"
-                label="Password"
-                placeholder="Choose password"
-              />
-            </form>
+                <FieldGroup
+                  value={this.newUserEmail}
+                  onChange={this.changePassword.bind(this)}
+                  id="formControlsText"
+                  type="text"
+                  label="Password"
+                  placeholder="Choose password"
+                />
+              </form>
 
-            <Button bsStyle="info">
-              Sign up
-            </Button>
-            <br />
-            <a onClick={this.props.handleBoolean}>
-              I already have an account.
-            </a>
-          </Well>
-        </Grid>
+              <Link to='/dashboard'>
+                <Button bsStyle="info">
+                    Sign up
+                </Button>
+              </Link>
+
+              <br />
+              <a onClick={this.props.handleBoolean}>
+                I already have an account.
+              </a>
+            </Well>
+          </Grid>
+        </div>
       )
     } else {
       return (
@@ -198,13 +199,7 @@ class LoginPage extends Component {
 
   render () {
     return (
-      <div>
-        <Link to='/dashboard'>
-          <Button bsStyle="success" bsSize="large">
-              Go to Dashboard
-          </Button>
-        </Link>
-
+      <div style={{backgroundColor: 'black'}}>
         <LoginForm
           showLogin={this.state.showLogin}
           handleBoolean={this.handleBoolean}

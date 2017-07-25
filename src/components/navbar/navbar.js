@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Glyphicon } from 'react-bootstrap'
 import { Navbar, Nav, NavItem }  from 'react-bootstrap'
-import { headerStyle, navIcon } from './navbar-style'
+import { headerStyle, navIcon, navbarGrad } from './navbar-style'
 
 
 class NavContainer extends Component {
