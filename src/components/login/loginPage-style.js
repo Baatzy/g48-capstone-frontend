@@ -16,13 +16,10 @@ const parentElement = {
   position: "relative",
 }
 
-let backgroundImage = 'images/crimp-hand.jpg'
+let backgroundImage = '/images/crimp-hand.jpg'
 
 const logoFont = {
   color: 'white'
 }
-
-
-
 
 export { parentElement, centerWellLogin, centerWellSignup, backgroundImage, logoFont }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Grid, FormGroup, ControlLabel, HelpBlock, FormControl, Well } from 'react-bootstrap'
 import { centerWellSignup, centerWellLogin, parentElement, backgroundImage, logoFont } from './loginPage-style'
+import Background from '../../images/crimp-hand.jpg'
 
 function FieldGroup({ id, label, help, ...props }) {
   return (
@@ -198,8 +199,14 @@ class LoginPage extends Component {
   }
 
   render () {
+    const loginBackground = {
+      backgroundImage: "url(" + Background + ")",
+      backgroundSize: 'cover',
+      height: '100vh'
+    }
+
     return (
-      <div style={{backgroundColor: 'black'}}>
+      <div style={loginBackground}>
         <LoginForm
           showLogin={this.state.showLogin}
           handleBoolean={this.handleBoolean}
