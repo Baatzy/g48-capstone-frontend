@@ -129,6 +129,16 @@ class LogsContainer extends Component {
     }
   }
 
+  logCardGlyph (bool) {
+    if (bool) {
+      return "ok"
+    } else if (bool === false) {
+      return "remove"
+    } else if (bool === null) {
+      return "question-sign"
+    }
+  }
+
   protocolLister (protocolIdArr, protocols) {
     let protocolNameArr = []
     let protocolsStr = ''
@@ -161,10 +171,18 @@ class LogsContainer extends Component {
       return log.protocols
     })
 
+
     return logsArr.map((log, index) =>
       <div key={index}>
         <Col xs={12} md={12}>
-          <Panel header={this.dateStringFixer(log.date)} bsStyle={this.logCardStyle(log.completed)}>
+          <Panel
+            header={(
+              <div>
+                <h4>{this.dateStringFixer(log.date)} <Glyphicon glyph={this.logCardGlyph(log.completed)} /></h4>
+              </div>
+            )}
+            bsStyle={this.logCardStyle(log.completed)}
+            >
             <p>Protocols: {this.protocolLister(protocolIdArr[index], protocols)}</p>
             <p>Warmup: {log.warmupNotes}</p>
             <p>Session: {log.sessionNotes}</p>
