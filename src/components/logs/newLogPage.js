@@ -56,7 +56,7 @@ class NewLogForm extends Component {
       protocols: [],
       // TO UPDATE WITH AUTH ***********************************
       newLogUserId: userId,
-      newLogCompleted: null,
+      newLogCompleted: true,
       newLogProtocolId1: 0,
       newLogProtocolId2: 0,
       newLogProtocolId3: 0,
@@ -168,7 +168,7 @@ class NewLogForm extends Component {
             </FormGroup>
 
             <FormGroup controlId="formControlsSelect">
-              <ControlLabel>Protocol 1</ControlLabel>
+              <ControlLabel>Block 1</ControlLabel>
               <FormControl componentClass="select" placeholder="select"
               value={this.newLogProtocols}
               onChange={this.changeProtocol1.bind(this)}>
@@ -178,7 +178,7 @@ class NewLogForm extends Component {
             </FormGroup>
 
             <FormGroup controlId="formControlsSelect">
-              <ControlLabel>Protocol 2</ControlLabel>
+              <ControlLabel>Block 2</ControlLabel>
               <FormControl componentClass="select" placeholder="select"
               value={this.newLogProtocols}
               onChange={this.changeProtocol2.bind(this)}>
@@ -188,7 +188,7 @@ class NewLogForm extends Component {
             </FormGroup>
 
             <FormGroup controlId="formControlsSelect">
-              <ControlLabel>Protocol 3</ControlLabel>
+              <ControlLabel>Block 3</ControlLabel>
               <FormControl componentClass="select" placeholder="select"
               value={this.newLogProtocols}
               onChange={this.changeProtocol3.bind(this)}>
@@ -198,7 +198,7 @@ class NewLogForm extends Component {
             </FormGroup>
 
             <FormGroup controlId="formControlsSelect">
-              <ControlLabel>Protocol 4</ControlLabel>
+              <ControlLabel>Block 4</ControlLabel>
               <FormControl componentClass="select" placeholder="select"
               value={this.newLogProtocols}
               onChange={this.changeProtocol4.bind(this)}>

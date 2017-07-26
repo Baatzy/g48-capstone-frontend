@@ -1,3 +1,7 @@
+h1 {
+  font-family: sans-serif;
+}
+
 .login-form label {
   color: #ededed;
 }
@@ -21,4 +25,20 @@
 .navbar-toggle.collapsed {
   border-width: 1px;
   border-color: white;
+}
+
+.btn-success {
+  background: linear-gradient(141deg, #52a22d 0%, #68bf32 51%, #56be16 95%);
+}
+
+.btn-info {
+  background: linear-gradient(141deg, #00baae 0%, #50cbd9 51%, #2cb5e8 95%);
+}
+
+.btn-warning {
+  background: linear-gradient(141deg, #ffba21 0%, #fed137 51%, #ffce21 95%);
+}
+
+.btn-danger {
+  background: linear-gradient(141deg, #e64f46 0%, #fc652d 51%, #ff5313 95%);
 }

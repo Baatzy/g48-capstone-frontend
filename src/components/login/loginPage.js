@@ -43,12 +43,13 @@ class LoginForm extends Component {
 
   render () {
     const logoText = {
-      paddingTop: "120px",
+      fontFamily: 'Quicksand',
+      paddingTop: "100px",
       paddingBottom: "50px",
       color: 'white',
       marginTop: "0px",
       marginBottom: "0px",
-      fontSize: "50px",
+      fontSize: "60px",
       textShadow: "2px 2px 10px rgba(0,0,0,1)",
     }
 
@@ -151,12 +152,13 @@ class SignUpForm extends Component {
 
   render () {
     const logoText = {
-      paddingTop: "120px",
+      fontFamily: 'Quicksand',
+      paddingTop: "100px",
       paddingBottom: "50px",
       color: 'white',
       marginTop: "0px",
       marginBottom: "0px",
-      fontSize: "50px",
+      fontSize: "60px",
       textShadow: "2px 2px 10px rgba(0,0,0,1)",
     }
 
