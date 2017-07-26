@@ -163,6 +163,11 @@ class LogsContainer extends Component {
   }
 
   displayLogCards (logsArr, protocols) {
+    const buttonWidth = {
+      paddingLeft: "15px",
+      paddingRight: "15px",
+    }
+
     if (!logsArr || !protocols) {
       return HTMLLoading()
     }
@@ -187,9 +192,9 @@ class LogsContainer extends Component {
             <p>Warmup: {log.warmupNotes}</p>
             <p>Session: {log.sessionNotes}</p>
             <div>
-              <Button onClick={this.handleCycleCompletedLog.bind(this, index)} bsStyle="success"><Glyphicon glyph="refresh" /></Button>
-              <Button onClick={false} bsStyle="warning"><Glyphicon glyph="edit" /></Button>
-              <Button onClick={this.handleDeleteLog.bind(this, index)} bsStyle="danger"><Glyphicon glyph="trash" /></Button>
+              <Button onClick={this.handleCycleCompletedLog.bind(this, index)} bsStyle="info" style={buttonWidth}><Glyphicon glyph="refresh" /></Button>
+              <Button onClick={false} bsStyle="warning" style={buttonWidth} className="button-spacer"><Glyphicon glyph="edit" /></Button>
+              <Button onClick={this.handleDeleteLog.bind(this, index)} bsStyle="danger" style={buttonWidth}><Glyphicon glyph="trash" /></Button>
             </div>
           </Panel>
         </Col>

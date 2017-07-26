@@ -2,6 +2,10 @@ h1 {
   font-family: sans-serif;
 }
 
+nav a {
+  color: white;
+}
+
 .login-form label {
   color: #ededed;
 }
@@ -27,18 +31,51 @@ h1 {
   border-color: white;
 }
 
+.button-spacer {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.panel-heading {
+  background: linear-gradient(140deg, #d2cece 0%, #acaaaa 51%, #d2cece 85%);
+}
+
+.panel-default>.panel-heading {
+  color: white;
+  font-size: 18px;
+}
+
+.panel-warning .panel-heading {
+  background: linear-gradient(140deg, #fcda62 0%, #fcbb2c 51%, #fcda62 95%);
+  color: white;
+}
+
+.panel-success .panel-heading {
+  background: linear-gradient(140deg, #94d969 0%, #6fc33a 51%, #94d969 95%);
+  color: white;
+}
+
+.panel-danger .panel-heading {
+  background: linear-gradient(140deg, #e87e78 0%, #fc564c 51%, #e87e78 95%);
+  color: white;
+}
+
 .btn-success {
-  background: linear-gradient(141deg, #52a22d 0%, #68bf32 51%, #56be16 95%);
+  background: linear-gradient(140deg, #81c158 0%, #83e46f 95%);
+  border-width: 0px;
 }
 
 .btn-info {
-  background: linear-gradient(141deg, #00baae 0%, #50cbd9 51%, #2cb5e8 95%);
+  background: linear-gradient(140deg, #00baae 0%, #50cbd9 51%, #46bfec 95%);
+  border-width: 0px;
 }
 
 .btn-warning {
-  background: linear-gradient(141deg, #ffba21 0%, #fed137 51%, #ffce21 95%);
+  background: linear-gradient(140deg, #fed137 0%, #fad659 95%);
+  border-width: 0px;
 }
 
 .btn-danger {
-  background: linear-gradient(141deg, #e64f46 0%, #fc652d 51%, #ff5313 95%);
+  background: linear-gradient(140deg, #fc564c 0%, #fb8154 95%);
+  border-width: 0px;
 }
