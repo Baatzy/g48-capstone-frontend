@@ -8,7 +8,7 @@ import { headerStyle, navIcon, navbarGrad } from './navbar-style'
 class NavContainer extends Component {
   render () {
     return (
-      <Navbar inverse collapseOnSelect>
+      <Navbar className="nav button" inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand >
             <Link to='/dashboard'><Glyphicon glyph="home" style={navIcon} /></Link>

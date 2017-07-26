@@ -9,6 +9,25 @@ const apiUrl = 'https://basement-windows.herokuapp.com'
 const userId = 1 // Eventually needs to be obtained from session token
 
 
+const buttonPadder = {
+  paddingTop: "5px",
+  paddingBottom: "5px",
+}
+
+const buttonPadderRight = {
+  paddingRight: "5px",
+}
+
+const buttonWidth = {
+  paddingLeft: "32px",
+  paddingRight: "32px",
+}
+
+const spacer = {
+  marginTop: "10px",
+}
+
+
 function MesocycleContainer(props) {
   return (
     <div>
@@ -22,7 +41,7 @@ class TrainNowButtons extends Component {
     return (
       <div>
         <Link to='/logbook/new'>
-          <Button bsStyle="danger" bsSize="large">
+          <Button bsStyle="danger" bsSize="large" style={buttonWidth}>
             Train Now
           </Button>
         </Link>
@@ -34,8 +53,8 @@ class TrainNowButtons extends Component {
 class ViewCalendarButtons extends Component {
   render () {
     return (
-      <div>
-        <Link to='/logbook'>
+      <div style={buttonPadder}>
+        <Link to='/logbook' style={buttonPadderRight}>
           <Button bsStyle="info" bsSize="large">
             My Logbook
           </Button>
@@ -54,7 +73,7 @@ class ViewProtocolsButtons extends Component {
   render () {
     return (
       <div>
-        <Link to='/protocols'>
+        <Link to='/protocols' style={buttonPadderRight}>
           <Button bsStyle="warning" bsSize="large">
             See All Protocols
           </Button>

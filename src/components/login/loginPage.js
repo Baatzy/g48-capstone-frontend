@@ -4,6 +4,7 @@ import { Button, Grid, FormGroup, ControlLabel, HelpBlock, FormControl, Well } f
 import { centerWellSignup, centerWellLogin, parentElement, backgroundImage } from './loginPage-style'
 import Background from '../../images/crimp-blur.jpg'
 
+
 function FieldGroup({ id, label, help, ...props }) {
   return (
     <FormGroup controlId={id}>
@@ -51,12 +52,19 @@ class LoginForm extends Component {
       textShadow: "2px 2px 10px rgba(0,0,0,1)",
     }
 
-    const whiteFont = {
+    const formTitle = {
       color: 'white',
+      marginTop: "0px",
     }
 
     const ghost = {
       backgroundColor: "rgba(0,0,0,0.65)",
+    }
+
+    const submitButton = {
+      marginBottom: "10px",
+      paddingLeft: "20px",
+      paddingRight: "20px",
     }
 
     if (this.props.showLogin) {
@@ -66,8 +74,8 @@ class LoginForm extends Component {
           <Grid>
             <Well style={ghost}>
               <div>
-                <h3 style={whiteFont}>Login</h3>
-                <form>
+                <h3 style={formTitle}>Login</h3>
+                <form className="login-form">
                   <FieldGroup
                     value={this.userEmail}
                     onChange={this.changeEmail.bind(this)}
@@ -88,8 +96,8 @@ class LoginForm extends Component {
                 </form>
 
                 <Link to='/dashboard'>
-                  <Button bsStyle="info">
-                      Sign in
+                  <Button bsStyle="info" style={submitButton}>
+                      Login
                   </Button>
                 </Link>
 
@@ -152,12 +160,19 @@ class SignUpForm extends Component {
       textShadow: "2px 2px 10px rgba(0,0,0,1)",
     }
 
-    const whiteFont = {
+    const formTitle = {
       color: 'white',
+      marginTop: "0px",
     }
 
     const ghost = {
       backgroundColor: "rgba(0,0,0,0.65)",
+    }
+
+    const submitButton = {
+      marginBottom: "10px",
+      paddingLeft: "20px",
+      paddingRight: "20px",
     }
 
     if (!this.props.showLogin) {
@@ -166,8 +181,8 @@ class SignUpForm extends Component {
           <h1 style={logoText}>BOARDROOM</h1>
           <Grid>
             <Well style={ghost}>
-              <h3 style={whiteFont}>Sign Up</h3>
-              <form>
+              <h3 style={formTitle}>Sign Up</h3>
+              <form className="login-form">
                 <FieldGroup
                   value={this.newUsername}
                   onChange={this.changeUsername.bind(this)}
@@ -197,7 +212,7 @@ class SignUpForm extends Component {
               </form>
 
               <Link to='/dashboard'>
-                <Button bsStyle="info">
+                <Button bsStyle="info" style={submitButton}>
                     Sign up
                 </Button>
               </Link>
