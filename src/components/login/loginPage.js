@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Grid, FormGroup, ControlLabel, HelpBlock, FormControl, Well } from 'react-bootstrap'
-import { centerWellSignup, centerWellLogin, parentElement, backgroundImage, logoFont } from './loginPage-style'
-import Background from '../../images/crimp-hand.jpg'
+import { centerWellSignup, centerWellLogin, parentElement, backgroundImage } from './loginPage-style'
+import Background from '../../images/crimp-blur.jpg'
 
 function FieldGroup({ id, label, help, ...props }) {
   return (
@@ -41,43 +41,63 @@ class LoginForm extends Component {
   }
 
   render () {
+    const logoText = {
+      paddingTop: "120px",
+      paddingBottom: "50px",
+      color: 'white',
+      marginTop: "0px",
+      marginBottom: "0px",
+      fontSize: "50px",
+      textShadow: "2px 2px 10px rgba(0,0,0,1)",
+    }
+
+    const whiteFont = {
+      color: 'white',
+    }
+
+    const ghost = {
+      backgroundColor: "rgba(0,0,0,0.65)",
+    }
+
     if (this.props.showLogin) {
       return (
         <div>
-          <h1 style={logoFont}>BOARDROOM</h1>
+          <h1 style={logoText}>BOARDROOM</h1>
           <Grid>
-            <Well>
-            <h3>Login</h3>
-              <form>
-                <FieldGroup
-                  value={this.userEmail}
-                  onChange={this.changeEmail.bind(this)}
-                  id="formControlsText"
-                  type="text"
-                  label="Email"
-                  placeholder="Enter email"
-                />
+            <Well style={ghost}>
+              <div>
+                <h3 style={whiteFont}>Login</h3>
+                <form>
+                  <FieldGroup
+                    value={this.userEmail}
+                    onChange={this.changeEmail.bind(this)}
+                    id="formControlsText"
+                    type="text"
+                    label="Email"
+                    placeholder="Enter email"
+                  />
 
-                <FieldGroup
-                  value={this.userPassword}
-                  onChange={this.changePassword.bind(this)}
-                  id="formControlsText"
-                  type="text"
-                  label="Password"
-                  placeholder="Enter password"
-                />
-              </form>
+                  <FieldGroup
+                    value={this.userPassword}
+                    onChange={this.changePassword.bind(this)}
+                    id="formControlsText"
+                    type="text"
+                    label="Password"
+                    placeholder="Enter password"
+                  />
+                </form>
 
-              <Link to='/dashboard'>
-                <Button bsStyle="info">
-                    Sign in
-                </Button>
-              </Link>
+                <Link to='/dashboard'>
+                  <Button bsStyle="info">
+                      Sign in
+                  </Button>
+                </Link>
 
-              <br />
-              <a onClick={this.props.handleBoolean}>
-                Click here to create an account.
-              </a>
+                <br />
+                <a onClick={this.props.handleBoolean}>
+                  Click here to create an account.
+                </a>
+              </div>
             </Well>
           </Grid>
         </div>
@@ -122,13 +142,31 @@ class SignUpForm extends Component {
   }
 
   render () {
+    const logoText = {
+      paddingTop: "120px",
+      paddingBottom: "50px",
+      color: 'white',
+      marginTop: "0px",
+      marginBottom: "0px",
+      fontSize: "50px",
+      textShadow: "2px 2px 10px rgba(0,0,0,1)",
+    }
+
+    const whiteFont = {
+      color: 'white',
+    }
+
+    const ghost = {
+      backgroundColor: "rgba(0,0,0,0.65)",
+    }
+
     if (!this.props.showLogin) {
       return (
         <div>
-          <h1 style={logoFont}>BOARDROOM</h1>
+          <h1 style={logoText}>BOARDROOM</h1>
           <Grid>
-            <Well>
-              <h3>Sign Up</h3>
+            <Well style={ghost}>
+              <h3 style={whiteFont}>Sign Up</h3>
               <form>
                 <FieldGroup
                   value={this.newUsername}
