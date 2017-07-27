@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { NavContainer } from '../navbar/navbar'
 import { Link } from 'react-router-dom'
-import { Button, Panel, Col, Glyphicon } from 'react-bootstrap'
+import { Button, Panel, Col, Glyphicon, FormGroup, ControlLabel, FormControl, HelpBlock,  } from 'react-bootstrap'
 // import { displayProtocolCards } from '../../Utilities/functions'
 import { HTMLLoading } from '../../Utilities/htmlSnips'
 const apiUrl = 'https://basement-windows.herokuapp.com'
@@ -10,12 +10,33 @@ const apiUrl = 'https://basement-windows.herokuapp.com'
 const userId = 1 // Eventually needs to be obtained from session token
 
 
+function FieldGroup ({ id, label, help, ...props }) {
+  return (
+    <FormGroup controlId={id}>
+      <ControlLabel>{label}</ControlLabel>
+      <FormControl {...props} />
+      {help && <HelpBlock>{help}</HelpBlock>}
+    </FormGroup>
+  )
+}
+
 class ProtocolFilters extends Component {
   render () {
+    const inputWidth = {
+      width: '350px',
+      marginLeft: '30px'
+    }
+
     return (
-      <div>
-        <h3>FILTERS GO HERE</h3>
-      </div>
+      <form>
+        <FieldGroup
+          id="formControlsText"
+          type="text"
+          label="Search protocols"
+          placeholder="Enter keywords"
+          style={inputWidth}
+        />
+      </form>
     )
   }
 }
@@ -102,7 +123,6 @@ class ProtocolsPage extends Component {
 
   async deleteProtocol(id) {
     let deleted = await axios.delete(`${apiUrl}/protocols/${id}`)
-
     let protocols = await axios.get(`${apiUrl}/protocols`)
     protocols = protocols.data
 
