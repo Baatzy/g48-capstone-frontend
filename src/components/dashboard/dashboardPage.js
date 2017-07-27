@@ -31,7 +31,7 @@ const spacer = {
 function MesocycleContainer(props) {
   return (
     <div>
-      <h4>Your mesocycle focus: {props.logbook.mainFocus}</h4>
+      <h4>Mesocycle focus: {props.logbook.mainFocus}</h4>
     </div>
   )
 }
