@@ -156,7 +156,12 @@ class NewLogForm extends Component {
   render () {
     const { redirect } = this.state;
 
-     if (redirect) return <Redirect to='/logbook' />
+    if (redirect) return <Redirect to='/logbook' />
+
+    const buttonWidth = {
+      paddingLeft: "20px",
+      paddingRight: "20px",
+    }
 
     return (
       <Grid>
@@ -223,7 +228,7 @@ class NewLogForm extends Component {
 
             <br />
 
-            <Button onClick={this.handleSubmit} type="submit" bsStyle="success">
+            <Button onClick={this.handleSubmit} type="submit" bsStyle="success" style={buttonWidth}>
               Submit
             </Button>
           </form>
