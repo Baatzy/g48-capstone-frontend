@@ -40,7 +40,10 @@ class TrainNowButtons extends Component {
   render () {
     return (
       <div>
-        <Link to='/logbook/new'>
+        <Link to={{
+          pathname: '/logbook/new',
+          state: {completed: true}
+        }}>
           <Button bsStyle="danger" bsSize="large" style={buttonWidth}>
             Train Now
           </Button>
@@ -59,7 +62,10 @@ class ViewCalendarButtons extends Component {
             My Logbook
           </Button>
         </Link>
-        <Link to='/logbook/new'>
+        <Link to={{
+          pathname: '/logbook/new',
+          state: {completed: null}
+        }}>
           <Button bsStyle="info" bsSize="large">
             <Glyphicon glyph="plus" />
           </Button>

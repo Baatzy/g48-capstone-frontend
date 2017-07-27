@@ -233,7 +233,10 @@ class LogsPage extends Component {
     return (
       <div>
         <NavContainer navTitle={this.state.navTitle}/>
-        <Link to='/logbook/new'>
+        <Link to={{
+          pathname: '/logbook/new',
+          state: {completed: null}
+        }}>
           <Button bsStyle="info" bsSize="large">
             Add New Log <Glyphicon glyph="plus" />
           </Button>

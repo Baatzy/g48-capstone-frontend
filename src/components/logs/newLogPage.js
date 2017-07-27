@@ -56,7 +56,7 @@ class NewLogForm extends Component {
       protocols: [],
       // TO UPDATE WITH AUTH ***********************************
       newLogUserId: userId,
-      newLogCompleted: true,
+      newLogCompleted: this.props.newLogCompleted,
       newLogProtocolId1: 0,
       newLogProtocolId2: 0,
       newLogProtocolId3: 0,
@@ -238,6 +238,7 @@ class NewLogPage extends Component {
     super(props)
     this.state = {
       navTitle: 'My Logbook',
+      completed: this.props.location.state.completed,
     }
   }
 
@@ -246,7 +247,7 @@ class NewLogPage extends Component {
       <div>
         <NavContainer navTitle={this.state.navTitle}/>
         <h3>Add Log Entry</h3>
-        <NewLogForm />
+        <NewLogForm newLogCompleted={this.state.completed}/>
       </div>
     )
   }
