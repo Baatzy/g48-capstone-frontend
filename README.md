@@ -2,8 +2,7 @@
 
 Boardroom is a climbing training logbook app built with React. It allows the user to save their logs online and identify the training that's helping the user accomplish their climbing goals.
 
-This repository is for the front-end only. The back-end repository can be found here:
-
+This repository is for the front-end only. The back-end repository can be found here:<br>
 https://github.com/Baatzy/g48-capstone-backend
 
 ### Screenshots
@@ -25,13 +24,12 @@ The repository can be downloaded and run as a web application for development/te
 * React
 * React-Bootstrap
 * Express
-* node.js
+* Node.js
 * PostgresQL
 * Knex
 
 ### API Back-end
-Back-end repository can be found at:
-
+Back-end repository can be found at:<br>
 https://github.com/Baatzy/g48-capstone-backend
 
 ### Upcoming features
