@@ -42,5 +42,5 @@ https://github.com/Baatzy/g48-capstone-backend
 * Add charts/visualization for logbook data
 * Add social element with friend lists and voting on training protocols
 
+##### Built August 2017 for the Galvanize g48 capstone
 Stefan Baatz - https://github.com/Baatzy
-##### Built August 2017 for the Galvanize g48 capstone:
