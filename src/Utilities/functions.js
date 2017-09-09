@@ -6,25 +6,33 @@ import { HTMLLoading } from './htmlSnips'
 // GENERAL USE // ***************************************************** //
 
 function dateStringFixer (dateStr) {
+  // dateStr will be passed in the format '2012-12-12...'
+
+  // Client-side error if date string isn't available
   if (!dateStr) return '...not sure actually.'
 
   let month = ''
   let day = ''
   let year = ''
 
+  // From dateStr, the month/day/year strings can be pulled out
   year = dateStr.slice(0, 4)
   month = dateStr.slice(5, 7)
   day = dateStr.slice(8, 10)
 
+  // Handling for '0' at the start of month and day strings
   if (month[0] === '0') month = month[1]
   if (day[0] === '0') day = day[1]
 
+  // Return the assembled date string
   return month + '-' + day + '-' + year
 }
 
 // PROTOCOLS PAGE // ************************************************* //
 
 function modifyProtocolButtons (authorId, userId, protocolId) {
+
+  // Authorization that only shows edit and delete buttons if userId matches protocol's authorId
   if (userId === authorId) {
     return (
       <div>
@@ -62,6 +70,7 @@ function displayProtocolCards (protocolsArr, userId) {
 
 // LOGBOOK PAGE // ************************************************** //
 
+// Function to set logbook card color via user log's completed/pending/missed status
 function logCardStyle (bool) {
   if (bool) {
     return "success"
@@ -76,6 +85,8 @@ function protocolLister (protocolIdArr, protocols) {
   let protocolNameArr = []
   let protocolsStr = ''
 
+  // Assembles string names of protocols in protocolNameArr
+  // 0(n)2 solution is slow in theory, but unlikely that user will have many protocols to train in a given day
   protocolIdArr.forEach(protocolId => {
     protocols.forEach(protocol => {
       if (protocol.id === protocolId) {
@@ -84,7 +95,9 @@ function protocolLister (protocolIdArr, protocols) {
     })
   })
 
+  // Assembles a heading string of protocol names for the /logbook day overview 
   protocolNameArr.forEach((protocolName, index) => {
+    // Adds a comma between protocol names if protocol name is not the last in the array
     if (index === protocolNameArr.length-1) {
       protocolsStr = protocolsStr.concat(protocolName)
     } else {
@@ -95,7 +108,10 @@ function protocolLister (protocolIdArr, protocols) {
   return protocolsStr
 }
 
+// Renders all logbook entries for users (most recent at top) when they hit /logbook
 function displayLogCards (logsArr, protocols) {
+
+  // Clientside loading message data hasn't arrived
   if (!logsArr || !protocols) {
     return HTMLLoading()
   }
@@ -104,6 +120,7 @@ function displayLogCards (logsArr, protocols) {
     return log.protocols
   })
 
+  // Map through logsArr, leverage protocols, and build HTML for each logbook entry panel 
   return logsArr.map((log, index) =>
     <div key={index}>
       <Col xs={12} md={12}>
