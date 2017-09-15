@@ -27,7 +27,6 @@ const spacer = {
   marginTop: "10px",
 }
 
-
 function MesocycleContainer(props) {
   return (
     <div>
